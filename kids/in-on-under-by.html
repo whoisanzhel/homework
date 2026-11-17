@@ -1,0 +1,499 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>In On Under By</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&family=Rubik:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one narrow column — a picture strip of the four words, then four numbered games; shared on screen with a 7-year-old */
+:root{
+  --bg:#EAF5EF;
+  --ink:#173A31;
+  --muted:#4A6A60;
+  --card:#FFFFFF;
+  --line:#C3DFD1;
+  --orange:#FFA23A;
+  --orange-soft:#FFE2BC;
+  --on-orange:#2A1A00;
+  --green:#1F8A5B;
+  --green-soft:#CDEEDB;
+  --bad:#C2412D;
+  --display:'Rubik',system-ui,sans-serif;
+  --body:'Nunito',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F211C;--ink:#E7F4EC;--muted:#9DBDB0;--card:#173229;--line:#2C4C41;
+    --orange:#FFA23A;--orange-soft:#4B3518;--on-orange:#2A1A00;
+    --green:#4CC38A;--green-soft:#1E4D38;--bad:#FF8F78;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F211C;--ink:#E7F4EC;--muted:#9DBDB0;--card:#173229;--line:#2C4C41;
+  --orange:#FFA23A;--orange-soft:#4B3518;--on-orange:#2A1A00;
+  --green:#4CC38A;--green-soft:#1E4D38;--bad:#FF8F78;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:20px 96px;
+}
+.wrap{max-width:640px;margin:0 auto;display:grid;gap:44px}
+.wrap>*{min-width:0}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,10vw,50px);line-height:1.02;margin:0 0 8px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.level{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+.head{display:flex;align-items:center;gap:12px}
+.num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--orange);color:var(--on-orange);display:grid;place-items:center;font-family:var(--display);font-weight:700}
+section{display:grid;gap:14px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+svg{display:block;width:100%;height:auto}
+.room{border-radius:14px;overflow:hidden}
+
+.btn{border:0;border-radius:16px;background:var(--orange);color:var(--on-orange);font-family:var(--display);font-weight:700;font-size:20px;padding:14px 22px;min-height:56px}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line);font-size:16px;padding:10px 16px;min-height:48px}
+.btn[disabled]{opacity:.45;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.task{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.2;margin:0}
+.task em{font-style:normal;background:var(--orange-soft);border-radius:10px;padding:0 8px}
+.msg{min-height:1.6em;font-weight:800;color:var(--green);margin:0;font-size:19px}
+.msg.warn{color:var(--bad)}
+
+/* word strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.w{border:2px solid var(--line);background:var(--card);border-radius:16px;padding:6px 6px 8px;display:grid;gap:4px;justify-items:center}
+.w b{font-family:var(--display);font-weight:700;font-size:22px}
+
+/* game 1: find the picture */
+.pics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.pic{border:3px solid var(--line);background:var(--card);border-radius:18px;padding:6px}
+.pic.ok{border-color:var(--green);background:var(--green-soft)}
+.pic.no{border-color:var(--bad);animation:shake .4s}
+
+/* game 2: pairs */
+.pairs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.card{position:relative;aspect-ratio:4/5;border:0;padding:0;background:none;perspective:600px}
+.card .in{position:absolute;inset:0;transition:transform .4s;transform-style:preserve-3d}
+.card.up .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:14px;display:grid;place-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:3px solid var(--line);overflow:hidden}
+.back{background:var(--orange);border-color:var(--orange);color:var(--on-orange);font-family:var(--display);font-weight:700;font-size:34px}
+.front{background:var(--card);transform:rotateY(180deg);padding:4px}
+.front b{font-family:var(--display);font-weight:700;font-size:clamp(20px,6vw,30px)}
+.card.done .front{border-color:var(--green);background:var(--green-soft)}
+
+/* game 3: drag */
+.tray{display:flex;gap:6px;min-height:84px;padding:8px;border:2px dashed var(--line);border-radius:18px;align-items:center;justify-content:center}
+.drag{display:block;width:64px;height:76px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+.drag.moving{position:fixed;z-index:60;cursor:grabbing;transform:scale(1.15)}
+.drop.no{animation:shake .4s}
+
+/* game 4: remember */
+.timer{display:flex;align-items:center;gap:12px}
+.sec{flex:none;width:52px;height:52px;border-radius:50%;background:var(--orange);color:var(--on-orange);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:28px;font-variant-numeric:tabular-nums}
+.timer .bar{flex:1}
+.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--orange);transform-origin:left}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.opt{border:2px solid var(--line);background:var(--card);border-radius:16px;padding:10px 12px;font-family:var(--display);font-weight:700;font-size:20px;min-height:58px}
+.opt.ok{border-color:var(--green);background:var(--green-soft)}
+.opt.no{border-color:var(--bad);animation:shake .4s}
+
+.stars{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--orange);color:var(--on-orange);border-radius:999px;padding:8px 16px;font-family:var(--display);font-weight:700;font-size:20px;box-shadow:0 2px 10px rgba(0,0,0,.2);z-index:40;font-variant-numeric:tabular-nums}
+
+.pop{animation:pop .35s}
+@keyframes pop{40%{transform:scale(1.1)}}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@media (max-width:420px){.strip{grid-template-columns:repeat(2,1fr)}.pairs{gap:6px}}
+@media (prefers-reduced-motion: reduce){.pop,.pic.no,.opt.no,.drop.no{animation:none}.card .in{transition:none}.drag.moving{transform:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="level">English · level A1 · age 7</p>
+    <h1>Where is Teddy?</h1>
+  </header>
+
+  <section>
+    <div class="head"><h2>in · on · under · by</h2></div>
+    <div class="strip" id="strip"></div>
+  </section>
+
+  <section id="s1">
+    <div class="head"><div class="num">1</div><h2>Find Teddy</h2></div>
+    <p class="task" id="fTask"></p>
+    <div class="pics" id="fPics"></div>
+    <p class="msg" id="fMsg"></p>
+  </section>
+
+  <section id="s2">
+    <div class="head"><div class="num">2</div><h2>Find the pairs</h2></div>
+    <div class="pairs" id="pairs"></div>
+    <p class="msg" id="pMsg"></p>
+    <div><button class="btn ghost" id="pNew" type="button">New game</button></div>
+  </section>
+
+  <section id="s3">
+    <div class="head"><div class="num">3</div><h2>Put Teddy</h2></div>
+    <p class="task" id="dTask"></p>
+    <div class="tray" id="dTray"></div>
+    <div class="drop room" id="dRoom"></div>
+    <p class="msg" id="dMsg"></p>
+  </section>
+
+  <section id="s4">
+    <div class="head"><div class="num">4</div><h2>Look and remember</h2></div>
+    <p class="task" id="mTask">Ready? Press Start!</p>
+    <div class="room" id="mRoom"></div>
+    <div class="timer" id="mTimer" hidden><span class="sec" id="mSec">8</span><div class="bar"><i id="mBarI"></i></div></div>
+    <div class="row" id="mCtl">
+      <button class="btn" id="mGo" type="button">Start</button>
+      <button class="btn ghost" id="mReady" type="button" hidden>I'm ready</button>
+    </div>
+    <div class="opts" id="mOpts"></div>
+    <p class="msg" id="mMsg"></p>
+  </section>
+</div>
+<div class="stars" aria-live="polite" aria-label="Stars"><span id="starN">0</span> stars</div>
+
+<script>
+(function(){
+  /* The hero. To use your own picture, put its address (or a data: URL) into img;
+     the picture's bottom edge stands on the floor. Change name to match. */
+  var HERO={name:'Teddy',img:''};
+
+  var $=function(id){return document.getElementById(id)};
+  var starN=0;
+  function addStar(){starN++;$('starN').textContent=starN;pop($('starN').parentNode)}
+  function rand(n){return Math.floor(Math.random()*n)}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=rand(i+1),t=a[i];a[i]=a[j];a[j]=t}return a}
+  function pop(el){el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
+  function each(list,fn){Array.prototype.forEach.call(list,fn)}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+
+  /* ---------- drawing ---------- */
+  var OUT='#5A3A1E',WOOD='#C98B4F',BOX='#F2A23A',BOXIN='#B9701C';
+  /* an original little bear, drawn from its bottom-centre (0,0); about 47 units tall */
+  function hero(x,y,s){
+    var g='<g transform="translate('+x+' '+y+') scale('+(s||1)+')">';
+    if(HERO.img) return g+'<image href="'+HERO.img+'" x="-21" y="-48" width="42" height="48" preserveAspectRatio="xMidYMax meet"/></g>';
+    var F='#A86B3C',L='#F0CFA2',S='stroke="#4A2A12" stroke-width="2"';
+    return g+
+      '<ellipse cx="-7" cy="-3" rx="6" ry="3.5" fill="'+F+'" '+S+'/>'+
+      '<ellipse cx="7" cy="-3" rx="6" ry="3.5" fill="'+F+'" '+S+'/>'+
+      '<ellipse cx="0" cy="-14" rx="12.5" ry="13" fill="'+F+'" '+S+'/>'+
+      '<ellipse cx="0" cy="-12" rx="7.5" ry="8" fill="'+L+'"/>'+
+      '<circle cx="-10" cy="-41" r="5.5" fill="'+F+'" '+S+'/>'+
+      '<circle cx="10" cy="-41" r="5.5" fill="'+F+'" '+S+'/>'+
+      '<circle cx="-10" cy="-41" r="2.6" fill="'+L+'"/>'+
+      '<circle cx="10" cy="-41" r="2.6" fill="'+L+'"/>'+
+      '<circle cx="0" cy="-31" r="13" fill="'+F+'" '+S+'/>'+
+      '<ellipse cx="0" cy="-27" rx="6.5" ry="4.8" fill="'+L+'"/>'+
+      '<ellipse cx="0" cy="-29.5" rx="2.4" ry="1.7" fill="#2A1608"/>'+
+      '<circle cx="-5" cy="-34" r="1.9" fill="#2A1608"/>'+
+      '<circle cx="5" cy="-34" r="1.9" fill="#2A1608"/>'+
+      '<path d="M-11 -20 Q0 -15 11 -20 L11 -16.5 Q0 -11.5 -11 -16.5Z" fill="#E8483B"/>'+
+      '</g>';
+  }
+  function r(x,y,w,h,fill,rx){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(rx||1.5)+'" fill="'+fill+'" stroke="'+OUT+'" stroke-width="2"/>'}
+
+  /* small one-object pictures, viewBox 0 0 160 130, floor at y=120 */
+  var OBJ={
+    table:{preps:['on','under','by'],
+      pos:{on:[70,60,.9],under:[70,120,.9],by:[141,120,.9]},
+      draw:function(){return r(26,66,8,54,WOOD)+r(106,66,8,54,WOOD)+r(18,60,104,9,WOOD,2)}},
+    chair:{preps:['on','under','by'],
+      pos:{on:[64,74,.85],under:[67,120,.76],by:[134,120,.9]},
+      draw:function(){return r(88,28,8,92,WOOD)+r(44,78,6,42,WOOD)+r(40,74,56,7,WOOD)}},
+    bed:{preps:['on','under','by'],
+      pos:{on:[82,62,.85],under:[69,120,.74],by:[145,120,.85]},
+      draw:function(){return r(10,38,10,82,WOOD)+r(118,58,8,62,WOOD)+r(20,76,98,6,WOOD)+
+        r(20,64,98,13,'#FFFFFF',3)+'<ellipse cx="34" cy="60" rx="11" ry="5" fill="#FFFFFF" stroke="'+OUT+'" stroke-width="2"/>'+
+        r(54,62,64,16,'#7FB3E0',3)}},
+    box:{preps:['in','on','by'],
+      pos:{in:[70,104,.95],on:[70,72,.9],by:[141,120,.9]},
+      draw:function(p,front){
+        if(p==='in'){
+          if(!front) return r(30,70,80,10,BOXIN,0);
+          return r(30,78,80,42,BOX,0)+
+            '<polygon points="30,78 14,62 20,58 34,72" fill="'+BOX+'" stroke="'+OUT+'" stroke-width="2" stroke-linejoin="round"/>'+
+            '<polygon points="110,78 126,62 120,58 106,72" fill="'+BOX+'" stroke="'+OUT+'" stroke-width="2" stroke-linejoin="round"/>';
+        }
+        return r(30,78,80,42,BOX,0)+r(26,72,88,8,BOX,1)}}
+  };
+  var NAMES=['table','chair','bed','box'];
+  function card(obj,prep){
+    var o=OBJ[obj],p=o.pos[prep];
+    var s='<svg viewBox="0 0 160 130" aria-hidden="true"><rect width="160" height="130" fill="#FFF4DF"/><rect y="120" width="160" height="10" fill="#E9C9A0"/>';
+    if(obj==='box'&&prep==='in') s+=o.draw('in',false)+hero(p[0],p[1],p[2])+o.draw('in',true);
+    else s+=o.draw(prep)+hero(p[0],p[1],p[2]);
+    return s+'</svg>';
+  }
+
+  /* the room for games 3 and 4, viewBox 0 0 340 175, floor at y=160 */
+  var SLOT={on:[85,86],under:[85,160],in:[238,146],by:[308,160]};
+  var PLACE={on:'on the table',under:'under the table',in:'in the box',by:'by the box'};
+  function room(pre){
+    function slot(k){return '<g id="'+pre+'-'+k+'" transform="translate('+SLOT[k][0]+' '+SLOT[k][1]+')"></g>'}
+    return '<svg viewBox="0 0 340 175" role="img" aria-label="A room with a table and a box">'+
+      '<rect width="340" height="175" fill="#FFF4DF"/>'+
+      '<rect x="166" y="22" width="44" height="40" rx="4" fill="#CFE8F7" stroke="'+OUT+'" stroke-width="2"/>'+
+      '<path d="M188 22v40M166 42h44" stroke="'+OUT+'" stroke-width="2"/>'+
+      '<rect y="160" width="340" height="15" fill="#E9C9A0"/>'+
+      r(30,92,10,68,WOOD)+r(130,92,10,68,WOOD)+slot('under')+r(20,86,130,10,WOOD,2)+slot('on')+
+      r(200,114,76,10,BOXIN,0)+slot('in')+r(200,122,76,38,BOX,0)+
+      '<polygon points="200,122 184,106 190,102 204,116" fill="'+BOX+'" stroke="'+OUT+'" stroke-width="2" stroke-linejoin="round"/>'+
+      '<polygon points="276,122 292,106 286,102 272,116" fill="'+BOX+'" stroke="'+OUT+'" stroke-width="2" stroke-linejoin="round"/>'+
+      slot('by')+'</svg>';
+  }
+  function emoji(ch,prep){
+    return '<text x="0" y="'+(prep==='in'?-25:-3)+'" font-size="34" text-anchor="middle" font-family="Segoe UI Emoji,Apple Color Emoji,Noto Color Emoji,sans-serif">'+ch+'</text>';
+  }
+
+  /* shared dragging: calls onDrop(el, clientX, clientY) when released */
+  function makeDraggable(el,onDrop){
+    el.addEventListener('pointerdown',function(e){
+      e.preventDefault();
+      var b=el.getBoundingClientRect();
+      var dx=e.clientX-b.left,dy=e.clientY-b.top;
+      el.style.left=b.left+'px';el.style.top=b.top+'px';
+      el.classList.add('moving');
+      try{el.setPointerCapture(e.pointerId)}catch(err){}
+      function move(ev){el.style.left=(ev.clientX-dx)+'px';el.style.top=(ev.clientY-dy)+'px'}
+      function up(ev){
+        el.removeEventListener('pointermove',move);
+        el.removeEventListener('pointerup',up);
+        el.removeEventListener('pointercancel',up);
+        el.classList.remove('moving');
+        el.style.left='';el.style.top='';
+        onDrop(el,ev.clientX,ev.clientY);
+      }
+      el.addEventListener('pointermove',move);
+      el.addEventListener('pointerup',up);
+      el.addEventListener('pointercancel',up);
+    });
+  }
+
+  /* ---------- word strip ---------- */
+  [['in','box'],['on','table'],['under','table'],['by','chair']].forEach(function(w){
+    var d=document.createElement('div');d.className='w';
+    d.innerHTML=card(w[1],w[0])+'<b>'+w[0]+'</b>';
+    $('strip').appendChild(d);
+  });
+
+  /* ---------- 1. find Teddy ---------- */
+  (function(){
+    var ALL=[];
+    NAMES.forEach(function(o){OBJ[o].preps.forEach(function(p){ALL.push({o:o,p:p})})});
+    var queue=[],goal=null,done=false;
+    function same(a,b){return a.o===b.o&&a.p===b.p}
+    function next(){
+      done=false;
+      if(!queue.length) queue=shuffle(ALL);
+      goal=queue.pop();
+      var rest=shuffle(ALL.filter(function(x){return !same(x,goal)}));
+      var pick=[];
+      /* one picture with the same thing, one with the same word, then any */
+      var a=rest.filter(function(x){return x.o===goal.o})[0];
+      var b=rest.filter(function(x){return x.p===goal.p&&x.o!==goal.o})[0];
+      [a,b].forEach(function(x){if(x) pick.push(x)});
+      rest.forEach(function(x){if(pick.length<3&&pick.indexOf(x)<0) pick.push(x)});
+      var shown=shuffle(pick.concat([goal]));
+      $('fTask').innerHTML='<em>'+goal.p+'</em> the '+goal.o;
+      $('fMsg').textContent='';$('fMsg').className='msg';
+      var host=$('fPics');host.innerHTML='';
+      shown.forEach(function(x){
+        var btn=document.createElement('button');
+        btn.type='button';btn.className='pic';
+        btn.setAttribute('aria-label',HERO.name+' '+x.p+' the '+x.o);
+        btn.innerHTML=card(x.o,x.p);
+        btn.addEventListener('click',function(){
+          if(done) return;
+          if(same(x,goal)){
+            done=true;btn.classList.add('ok');pop(btn);
+            $('fMsg').textContent='Yes! '+HERO.name+' is '+goal.p+' the '+goal.o+'.';
+            addStar();setTimeout(next,2600);
+          }else{
+            btn.classList.add('no');
+            setTimeout(function(){btn.classList.remove('no')},450);
+            $('fMsg').className='msg warn';$('fMsg').textContent='No, '+x.p+' the '+x.o+'. Try again!';
+          }
+        });
+        host.appendChild(btn);
+      });
+    }
+    next();
+  })();
+
+  /* ---------- 2. pairs ---------- */
+  (function(){
+    var open=[],busy=false,found=0;
+    function deal(){
+      open=[];busy=false;found=0;
+      $('pMsg').textContent='';
+      var objs=shuffle(['table','chair','bed']);
+      var set=[['in','box'],['on',objs[0]],['under',objs[1]],['by',objs[2]]];
+      var cards=[];
+      set.forEach(function(s){
+        cards.push({k:s[0],html:'<b>'+s[0]+'</b>',o:s[1]});
+        cards.push({k:s[0],html:card(s[1],s[0]),o:s[1]});
+      });
+      var host=$('pairs');host.innerHTML='';
+      shuffle(cards).forEach(function(c){
+        var b=document.createElement('button');
+        b.type='button';b.className='card';b.setAttribute('aria-label','Card');
+        b.innerHTML='<span class="in"><span class="face back">?</span><span class="face front">'+c.html+'</span></span>';
+        b._c=c;
+        b.addEventListener('click',function(){flip(b)});
+        host.appendChild(b);
+      });
+    }
+    function flip(b){
+      if(busy||b.classList.contains('up')) return;
+      b.classList.add('up');open.push(b);
+      if(open.length<2) return;
+      var a=open[0],c=open[1];open=[];
+      if(a._c.k===c._c.k){
+        a.classList.add('done');c.classList.add('done');
+        found++;
+        var o=a._c.o;
+        $('pMsg').textContent=cap(a._c.k)+'! '+HERO.name+' is '+a._c.k+' the '+o+'.';
+        addStar();
+        if(found===4) setTimeout(function(){$('pMsg').textContent='All pairs! Great memory!'},1600);
+      }else{
+        busy=true;
+        setTimeout(function(){a.classList.remove('up');c.classList.remove('up');busy=false},1100);
+      }
+    }
+    $('pNew').addEventListener('click',deal);
+    deal();
+  })();
+
+  /* ---------- 3. put Teddy ---------- */
+  (function(){
+    var host=$('dRoom');host.innerHTML=room('d');
+    var svg=host.querySelector('svg'),tray=$('dTray'),msg=$('dMsg');
+    var goal='',last='',lock=false;
+    function where(x,y){
+      var pt=svg.createSVGPoint();pt.x=x;pt.y=y;
+      var m=svg.getScreenCTM();if(!m) return null;
+      var p=pt.matrixTransform(m.inverse());
+      if(p.y<0||p.y>175||p.x<0||p.x>340) return null;
+      if(p.x>=12&&p.x<=158&&p.y<88) return 'on';
+      if(p.x>=12&&p.x<=158) return 'under';
+      if(p.x>=186&&p.x<=282&&p.y>=60) return 'in';
+      if(p.x>282&&p.y>=60) return 'by';
+      return null;
+    }
+    function clear(){['on','under','in','by'].forEach(function(k){$('d-'+k).innerHTML=''})}
+    function next(){
+      lock=false;clear();
+      var opts=['on','under','in','by'].filter(function(k){return k!==last});
+      goal=opts[rand(opts.length)];last=goal;
+      $('dTask').innerHTML='Put '+HERO.name+' <em>'+PLACE[goal]+'</em>.';
+      msg.textContent='';msg.className='msg';
+      tray.innerHTML='';
+      var d=document.createElement('div');d.className='drag';
+      d.innerHTML='<svg viewBox="-22 -50 44 52" aria-label="'+HERO.name+'">'+hero(0,0,1)+'</svg>';
+      makeDraggable(d,onDrop);tray.appendChild(d);
+    }
+    function onDrop(el,x,y){
+      if(lock) return;
+      var k=where(x,y);
+      if(!k) return;
+      if(k===goal){
+        lock=true;el.remove();
+        $('d-'+k).innerHTML=hero(0,0,1);
+        msg.className='msg';msg.textContent='Yes! '+HERO.name+' is '+PLACE[k]+'.';
+        addStar();setTimeout(next,2800);
+      }else{
+        host.classList.add('no');setTimeout(function(){host.classList.remove('no')},450);
+        msg.className='msg warn';msg.textContent='That is '+PLACE[k]+'. Try again!';
+      }
+    }
+    next();
+  })();
+
+  /* ---------- 4. look and remember ---------- */
+  (function(){
+    var LOOK=8000;
+    var THINGS=[
+      {id:'hero',name:HERO.name,q:'Where is '+HERO.name+'?'},
+      {id:'croc',ch:'🐊',name:'the crocodile',q:'Where is the crocodile?'},
+      {id:'orange',ch:'🍊',name:'the orange',q:'Where is the orange?'},
+      {id:'ball',ch:'⚽',name:'the ball',q:'Where is the ball?'}
+    ];
+    var KEYS=['on','under','in','by'];
+    $('mRoom').innerHTML=room('m');
+    var plan={},asks=[],timer=null,t0=0,raf=0,locked=false;
+    function draw(k,thing){$('m-'+k).innerHTML=thing.id==='hero'?hero(0,0,1):emoji(thing.ch,k)}
+    function clear(){KEYS.forEach(function(k){$('m-'+k).innerHTML=''})}
+    function showAll(){KEYS.forEach(function(k){draw(k,plan[k])})}
+    function start(){
+      clear();$('mOpts').innerHTML='';$('mMsg').textContent='';$('mMsg').className='msg';
+      var mix=shuffle(THINGS);
+      KEYS.forEach(function(k,i){plan[k]=mix[i]});
+      showAll();
+      $('mTask').textContent='Look! Remember!';
+      $('mGo').hidden=true;$('mReady').hidden=false;$('mTimer').hidden=false;
+      t0=performance.now();
+      cancelAnimationFrame(raf);
+      (function tick(){
+        var left=Math.max(0,LOOK-(performance.now()-t0)),f=left/LOOK;
+        $('mBarI').style.transform='scaleX('+f+')';
+        $('mSec').textContent=Math.ceil(left/1000);
+        if(f>0) raf=requestAnimationFrame(tick);
+      })();
+      clearTimeout(timer);timer=setTimeout(hide,LOOK);
+    }
+    function hide(){
+      clearTimeout(timer);cancelAnimationFrame(raf);
+      clear();
+      $('mReady').hidden=true;$('mTimer').hidden=true;
+      asks=shuffle(KEYS).slice(0,3);
+      ask();
+    }
+    function ask(){
+      locked=false;
+      var k=asks.shift(),thing=plan[k];
+      $('mTask').textContent=thing.q;
+      $('mMsg').textContent='';$('mMsg').className='msg';
+      var host=$('mOpts');host.innerHTML='';
+      KEYS.forEach(function(opt){
+        var b=document.createElement('button');
+        b.type='button';b.className='opt';b.textContent=PLACE[opt];
+        b.addEventListener('click',function(){
+          if(locked) return;
+          if(opt===k){
+            locked=true;b.classList.add('ok');draw(k,thing);
+            $('mMsg').textContent='Yes! '+cap(thing.name)+' is '+PLACE[k]+'.';
+            addStar();
+            setTimeout(asks.length?ask:finish,2400);
+          }else{
+            b.classList.add('no');setTimeout(function(){b.classList.remove('no')},450);
+            $('mMsg').className='msg warn';$('mMsg').textContent='No. Try again!';
+          }
+        });
+        host.appendChild(b);
+      });
+    }
+    function finish(){
+      showAll();
+      $('mOpts').innerHTML='';
+      $('mTask').textContent='Great memory!';
+      $('mMsg').className='msg';
+      $('mMsg').textContent='Look again. What is in the box?';
+      $('mGo').hidden=false;$('mGo').textContent='Start again';
+    }
+    $('mGo').addEventListener('click',start);
+    $('mReady').addEventListener('click',hide);
+  })();
+})();
+</script>
+
+</body></html>
