@@ -20,10 +20,10 @@ img.ic{display:inline-block;width:28px;height:28px;object-fit:contain;vertical-a
 .prog{background:var(--sun);color:var(--ink);border-radius:999px;padding:2px 12px;font-weight:900;font-size:15px;white-space:nowrap}
 .bar{height:6px;background:rgba(255,255,255,.2);border-radius:9px;margin-top:8px;max-width:640px;margin-inline:auto;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:var(--sun);transition:width .4s}
-.tn{display:flex;gap:5px;max-width:640px;margin:8px auto 0;overflow-x:auto;scrollbar-width:none}
+.tn{display:flex;gap:4px;max-width:640px;margin:8px auto 0;overflow-x:auto;scrollbar-width:none}
 .tn::-webkit-scrollbar{display:none}
 body:not(.go) .tn{display:none}
-.tn button{flex:0 0 auto;min-width:32px;height:34px;border:2px solid #fff6;border-radius:10px;background:transparent;color:#fff;font-size:14px;padding:0 6px}
+.tn button{flex:0 0 auto;min-width:30px;height:34px;border:2px solid #fff6;border-radius:10px;background:transparent;color:#fff;font-size:14px;padding:0 6px}
 .tn button.done{background:var(--teal);border-color:var(--teal)}
 .tn button.skip{border-style:dashed;border-color:var(--coral);color:var(--coral)}
 .tn button.on{background:var(--sun);border-color:var(--sun);color:var(--ink)}
@@ -98,15 +98,15 @@ body.end .top{display:none}
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:20}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body>
-<header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 3</h1><span class="prog" id="prog">0 / 7</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
+<header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 3</h1><span class="prog" id="prog">0 / 8</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
 <main class="wrap">
 
 <section class="step on" id="s0">
   <div class="card">
     <div class="eyebrow">Homework · Lesson 3</div>
     <h2>Habits and phrasal verbs</h2>
-    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 7 short tasks about the Present Simple and phrasal verbs. At the end you get a report card for your teacher!</div></div>
-    <p class="ru">7 заданий, примерно 20 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
+    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 8 short tasks about the Present Simple and phrasal verbs. At the end you get a report card for your teacher!</div></div>
+    <p class="ru">8 заданий, примерно 25 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
     <label class="f">Your name <input id="name" autocomplete="given-name" placeholder="Your name"></label>
     <div class="row"><button class="btn coral" id="start" disabled>Start →</button></div>
   </div>
@@ -177,6 +177,18 @@ const TASKS=[
   ['I ___ at half past seven, have a shower and get dressed.','get up'],
   ['Please ___ your phone before the lesson.','turn off'],
   ['Mum works late. She doesn’t ___ home before eight.','get back']]},
+ {type:'select',title:'Words of the lesson',ru:'Слова из памятки к уроку (PDF). Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_game','Do you remember the words from our lesson? Fill the gaps!'],
+  box:['takes ages','as soon as','habit','films','edit','bedtime','timetable','episode','have a lie-in','immediately'],items:[
+  ['My homework always ___! I finish it at nine.','takes ages'],
+  ['I call my mum ___ I get home.','as soon as'],
+  ['Reading before bed is a good ___.','habit'],
+  ['Cam ___ all our videos with his new camera.','films'],
+  ['After filming, I ___ the video on my laptop.','edit'],
+  ['It’s ten o’clock. It’s ___! Go to bed.','bedtime'],
+  ['Look at the ___: the bus comes at 8:15.','timetable'],
+  ['We watch a new ___ of our favourite show every Friday.','episode'],
+  ['It’s Sunday! I can ___ and get up at ten.','have a lie-in'],
+  ['Your grandma is on the phone. Answer ___!','immediately']]},
  {type:'write',title:'Family habits',ru:'Напиши 5–6 предложений о привычках одного человека из твоей семьи. Используй слово частоты (always, usually, never…), doesn’t и фразовый глагол.',cam:['max_dream','Last one! Tell me about one person in your family. What does he or she do every day?'],
   placeholder:'My mum always gets up at six. She…'}
 ];
