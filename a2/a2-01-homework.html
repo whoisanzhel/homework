@@ -104,9 +104,9 @@ body.end .top{display:none}
 <section class="step on" id="s0">
   <div class="card">
     <div class="eyebrow">Homework · Lesson 1</div>
-    <h2>Have you ever…?</h2>
-    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 8 short tasks about the Present Perfect and the words of our first lesson. At the end you get a report card for your teacher!</div></div>
-    <p class="ru">8 заданий, примерно 25 минут. Держи открытой памятку со словами урока (PDF): она пригодится в задании 7. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
+    <h2>All about me</h2>
+    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 8 short tasks about be, have got, questions about you and the words of our first lesson. At the end you get a report card for your teacher!</div></div>
+    <p class="ru">8 заданий, примерно 20–25 минут. Держи открытой памятку со словами урока (PDF): она пригодится в задании 7. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
     <label class="f">Your name <input id="name" autocomplete="given-name" placeholder="Your name"></label>
     <div class="row"><button class="btn coral" id="start" disabled>Start →</button></div>
   </div>
@@ -128,71 +128,74 @@ body.end .top{display:none}
 <script>
 (function(){
 const $=s=>document.querySelector(s);
-const HW={level:'A2',lesson:'Lesson 1',title:'Present Perfect: Have you ever…?'};
+const HW={level:'A2',lesson:'Lesson 1',title:'All about me: be & have got'};
 const norm=s=>String(s||'').toLowerCase().replace(/[’`´]/g,"'").replace(/\s+/g,' ').replace(/^\s|\s$/g,'').replace(/[.?!]+$/,'');
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 document.querySelectorAll('img[data-r]').forEach(i=>{if(RB[i.dataset.r])i.src=RB[i.dataset.r];});
 
-/* ---------- tasks (Present Simple review + Workbook p. 25, 27: Present Perfect) ---------- */
+/* ---------- tasks (Lesson 1 «All about me»: be, have got, questions, short answers; own tasks — the Workbook has no be / have got section) ---------- */
 const TASKS=[
- {type:'mcq',title:'Present Simple check',ru:'Вспомни Present Simple. Выбери правильный вариант.',cam:['max_smile','Let’s start easy! These sentences are about my family and friends.'],items:[
-  ['Cam ___ his bike to school on Fridays.',['rides','ride','is ride'],'rides'],
-  ['My little sister ___ her teeth after breakfast.',['brushes','brushs','brush'],'brushes'],
-  ['We ___ wear a uniform at our school.',['don’t','doesn’t','aren’t'],'don’t'],
-  ['___ your best friend live near you?',['Does','Do','Is'],'Does'],
-  ['Lulu ___ like horror films. They’re too scary!',['doesn’t','don’t','isn’t'],'doesn’t'],
-  ['What time ___ you usually get up on Sundays?',['do','does','are'],'do']]},
- {type:'mcq',title:'just, already, yet, ever, never',ru:'Выбери подходящее слово. Подсказка: yet — в конце вопроса и отрицания, ever — в вопросе «когда-нибудь».',cam:['max_think','Small words, big job! Which one fits?'],items:[
-  ['Have you ___ been to Paris? — No, never.',['ever','yet','already'],'ever'],
-  ['I can’t go out. I haven’t done my homework ___.',['yet','already','just'],'yet'],
-  ['No pancakes for me, thanks. I’ve ___ had breakfast.',['already','yet','ever'],'already'],
-  ['Look out of the window! It has ___ started to snow!',['just','yet','ever'],'just'],
-  ['Lulu has ___ been on a roller coaster. She’s scared of them!',['never','ever','yet'],'never'],
-  ['___ Cam tidied his room yet? It looks terrible!',['Has','Have','Did'],'Has']]},
- {type:'gaps',title:'Cam’s note',ru:'Впиши слово из рамки. Каждое слово — один раз. Нажми на слово в рамке, чтобы вставить его в пропуск.',cam:['max_nervous','I wrote a note to Roxy and Sam, but some words are missing!'],
-  box:['have','haven’t','has','hasn’t','ago','yet','just','already'],
-  text:'Hi Roxy and Sam! Good news first: I {have} finished the script for our Big Roar video! But I {haven’t} filmed the dance yet, because my camera is broken. Dad {has} taken it to the shop for me. He called me ten minutes {ago}: the camera isn’t ready {yet}. Lulu {hasn’t} made the posters, because she’s ill. And the best news: I’ve {just} read an email from the show. It came one minute ago! They have {already} watched our first video three times, and they love it! Cam'},
- {type:'gaps',title:'Who has done it?',ru:'Впиши глагол из рамки в Present Perfect: has / have + третья форма (ride → has ridden). Каждый глагол — один раз.',cam:['max_lol','I asked my family and friends: “Have you ever…?” Here are their answers!'],
-  box:['ride','eat','see','be','win','meet','lose','fly'],
-  text:'Lulu {has ridden} a horse on her uncle’s farm. Dad {has eaten} sushi, but he didn’t like it. Mum and Lulu {have seen} a dolphin in the sea. Roxy and Sam {have been} to London. Our team {has won} a prize for the best video. Grandma {has met} a famous singer! Dad {has lost} his phone three times this year. And I {have flown} in a plane twice.'},
- {type:'order',title:'Make questions',ru:'Собери вопрос: нажимай на слова по порядку. Одно слово лишнее (Have или Has).',extra:['Have','Has'],cam:['max_wink','Now it’s your turn to interview people. Help me ask the questions!'],items:[
-  ['Have you ever eaten sushi',['Have','Has','you','ever','eaten','sushi']],
-  ['Has Cam ever flown in a plane',['Has','Have','Cam','ever','flown','in a plane']],
-  ['Have Roxy and Sam ever been to London',['Have','Has','Roxy and Sam','ever','been','to London']],
-  ['Has your dad ever lost his phone',['Has','Have','your dad','ever','lost','his phone']],
-  ['Have your friends ever seen a dolphin',['Have','Has','your friends','ever','seen','a dolphin']],
-  ['Has Lulu finished her homework yet',['Has','Have','Lulu','finished','her homework','yet']]]},
- {type:'mcq',title:'Quick check',ru:'Выбери правильный вариант. Помни: есть точное время в прошлом (yesterday, last week) — нужен Past Simple.',cam:['max_hmm','Careful! Some of these are tricky.'],items:[
-  ['Have you ever been to London? — No, ___.',['I haven’t','I didn’t','I don’t'],'I haven’t'],
-  ['Has Lulu seen the new cartoon? — Yes, ___.',['she has','she did','she saw'],'she has'],
-  ['I ___ Roxy and Sam at the park yesterday.',['saw','have seen','has seen'],'saw'],
-  ['My dad ___ a new car! Come and look!',['has just bought','just has bought','has just buy'],'has just bought'],
-  ['Cam isn’t here. He ___ to the shop.',['has gone','has been','have gone'],'has gone'],
-  ['I’m back! I ___ to the dentist.',['have been','have gone','has been'],'have been'],
-  ['I’m hungry. I ___ lunch yet.',['haven’t had','not have had','hasn’t had'],'haven’t had']]},
+ {type:'mcq',title:'am, is or are?',ru:'Выбери правильную форму глагола be: am, is или are (и их отрицания).',cam:['max_smile','Let’s start easy! These sentences are about me, my family and friends.'],items:[
+  ['Hi! My name is Cam and I ___ 12 years old.',['am','is','have'],'am'],
+  ['Lulu ___ my little sister. She’s eight.',['is','are','am'],'is'],
+  ['Roxy and Sam ___ my best friends.',['are','is','am'],'are'],
+  ['My dad ___ tall. He’s short, like me!',['isn’t','aren’t','not'],'isn’t'],
+  ['We ___ scared of spiders. We love them!',['aren’t','isn’t','not'],'aren’t'],
+  ['___ you good at drawing?',['Are','Do','Is'],'Are']]},
+ {type:'gaps',title:'Cam’s family',ru:'Впиши слово из рамки. Каждое слово — один раз. Нажми на слово в рамке, чтобы вставить его в пропуск.',cam:['max_lol','I wrote about my family for my channel. Some words are missing!'],
+  box:['am','are','is','isn’t','have got','haven’t got','has got','hasn’t got'],
+  text:'Hi! I {am} Cam, and this is my family. We {are} a small family. I {have got} one sister, Lulu. I {haven’t got} a brother. Lulu {has got} long curly hair, but she {hasn’t got} freckles. Our dog Bobo {is} very friendly. And Grandma? She {isn’t} lazy at all: she’s got a skateboard!'},
+ {type:'order',title:'Make questions',ru:'Собери вопрос: нажимай на слова по порядку. Одно слово лишнее.',extra:['Do','Does','Are','Is','Have','Has'],cam:['max_wink','I’m making an interview video. Help me ask the questions!'],items:[
+  ['Have you got a pet',['Have','Do','you','got','a pet']],
+  ['Are you good at maths',['Are','Do','you','good at','maths']],
+  ['Has Lulu got a phone',['Has','Does','Lulu','got','a phone']],
+  ['Is your school big',['Is','Does','your school','big']],
+  ['Have your cousins got a dog',['Have','Do','your cousins','got','a dog']],
+  ['Do you like horror films',['Do','Are','you','like','horror films']]]},
+ {type:'mcq',title:'Short answers',ru:'Выбери правильный краткий ответ. Помни: в кратком ответе got не повторяем.',cam:['max_think','Now answer my questions. Short answers only!'],items:[
+  ['Are you 12? — Yes, ___.',['I am','I’m','I is'],'I am'],
+  ['Have you got a brother? — No, ___.',['I haven’t','I don’t','I haven’t got'],'I haven’t'],
+  ['Is Lulu shy? — No, ___.',['she isn’t','she doesn’t','she hasn’t'],'she isn’t'],
+  ['Has Cam got a camera? — Yes, ___.',['he has','he has got','he is'],'he has'],
+  ['Are Roxy and Sam into music? — Yes, ___.',['they are','they do','they have'],'they are'],
+  ['Do you like pizza? — Yes, ___.',['I do','I am','I like'],'I do']]},
+ {type:'mcq',title:'Question words',ru:'Выбери вопросительное слово. Ответ после тире подскажет.',cam:['max_hmm','Who, what, where…? Which word starts the question?'],items:[
+  ['___ old are you? — I’m 12.',['How','What','Who'],'How'],
+  ['___ are you from? — I’m from Kazan.',['Where','What','How'],'Where'],
+  ['___ is your best friend? — Roxy!',['Who','What','Where'],'Who'],
+  ['___ are you into? — Video games and music.',['What','Who','Where'],'What'],
+  ['___ is your birthday? — In May.',['When','Where','Who'],'When'],
+  ['___ pets have you got? — Two cats.',['How many','How much','How old'],'How many']]},
+ {type:'mcq',title:'Lulu’s page',ru:'Прочитай текст Лулу. Это Right (верно), Wrong (неверно) или Doesn’t say (в тексте не сказано)?',cam:['max_pizza','My sister Lulu has got her own “About me” page. Read it!'],
+  read:'Hi, I’m Lulu! I’m eight and I’m Cam’s little sister. I’ve got long curly hair and a lot of freckles. I haven’t got a phone, but I’ve got a tablet. I’m really into drawing, and I’m good at it! I’m a bit scared of big dogs, but our dog Bobo is OK: he’s small and very friendly. I get on well with Cam, but sometimes he is lazy and doesn’t help me.',items:[
+  ['Lulu is Cam’s sister.',['Right','Wrong','Doesn’t say'],'Right'],
+  ['Lulu has got a phone.',['Right','Wrong','Doesn’t say'],'Wrong'],
+  ['Lulu is good at drawing.',['Right','Wrong','Doesn’t say'],'Right'],
+  ['Lulu has got a cat.',['Right','Wrong','Doesn’t say'],'Doesn’t say'],
+  ['Lulu is scared of Bobo.',['Right','Wrong','Doesn’t say'],'Wrong'],
+  ['Lulu and Cam get on well.',['Right','Wrong','Doesn’t say'],'Right']]},
  {type:'select',title:'Words of the lesson',ru:'Слова из памятки к уроку (PDF). Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_game','Do you remember the words from our first lesson? Fill the gaps!'],
-  box:['stay in bed','lets','tried','lost','won','famous','roller coaster','subtitles','goal','costs'],items:[
-  ['On Sundays I ___ till ten and read comics.','stay in bed'],
-  ['Our art teacher ___ us draw on tablets.','lets'],
-  ['Have you ever ___ Japanese food? It’s really good!','tried'],
-  ['Oh no! I’ve ___ my keys again! Where are they?','lost'],
-  ['Our team has ___ first prize! Everybody is so happy!','won'],
-  ['My grandma has met a ___ singer. Everybody knows her!','famous'],
-  ['The ___ at the park is very fast and very high!','roller coaster'],
-  ['I watch films in English with ___ in Russian.','subtitles'],
-  ['My ___ for this year is to pass the KET exam.','goal'],
-  ['A ticket to the cinema ___ eight pounds.','costs']]},
- {type:'write',title:'My experiences',ru:'Напиши 5–6 предложений о себе: что ты уже делал в жизни и чего никогда не делал. Добавь одно предложение в Past Simple — когда это было (last summer, two years ago).',cam:['max_dream','Last one! Tell me about you. What have you done? What have you never done?'],
-  placeholder:'I have been to the sea. I went there last summer. I have never…'}
+  box:['nickname','into','good at','scared of','only child','cousins','get on','neighbours','shy','In my free time'],items:[
+  ['Everybody calls me Sasha. It’s my ___.','nickname'],
+  ['I’m really ___ music. I listen to it all day!','into'],
+  ['I’m ___ maths. I always get top marks.','good at'],
+  ['Lulu is ___ big dogs. She runs away from them!','scared of'],
+  ['I haven’t got any brothers or sisters. I’m an ___.','only child'],
+  ['My aunt’s children are my ___.','cousins'],
+  ['I ___ well with my sister. We never fight.','get on'],
+  ['The people next door are our ___.','neighbours'],
+  ['Sam is a bit ___ with new people. He doesn’t talk much.','shy'],
+  ['___ I play video games and draw.','In my free time']]},
+ {type:'write',title:'All about me',ru:'Напиши 5–6 предложений о себе: имя, возраст, внешность, семья, чем увлекаешься. Используй be (I’m…), have got / haven’t got и слова урока (be into, be good at, a bit…).',cam:['max_dream','Last one! Tell me all about YOU, like on Roxy’s and Sam’s “About me” pages.'],
+  placeholder:'My name is … I’m … I’ve got … I haven’t got … I’m really into …'}
 ];
 
 /* checklist for the writing task */
 const HC=[['5–6 sentences',x=>x.split(/[.!?]+/).filter(s=>s.trim().length>3).length>=5],
- ['have / has + V3 (I have been…)',x=>/\b(have|has|['’]ve)\s+(ever\s+|just\s+|already\s+)?(been|seen|eaten|done|gone|made|written|ridden|flown|met|won|lost|tried|swum|had|bought|drunk|taken|read|broken|found|given|known|sung|\w+ed)\b/i.test(x)],
- ['never',x=>/\bnever\b/i.test(x)],
- ['a past time: yesterday, last…, …ago',x=>/\b(yesterday|last|ago|in (19|20)\d\d)\b/i.test(x)]];
-
+ ['be: I’m / I am …',x=>/\b(I\s+am|I['’]m)\b/i.test(x)],
+ ['have got / haven’t got',x=>/\b(have|has|['’]ve|['’]s|haven['’]t|hasn['’]t)\s+got\b/i.test(x)],
+ ['a word of the lesson: into, good at, scared of, a bit…',x=>/\b(into|good at|bad at|scared of|a bit|nickname|cousins?|only child|twins?|neighbours?|get on|curly|straight|shy|friendly|funny|lazy|free time|look like)\b/i.test(x)]];
 /* ---------- state ---------- */
 const R=TASKS.map(t=>({got:0,total:t.type==='write'?4:(t.items?t.items.length:(t.text.match(/\{/g)||[]).length),done:false,mist:[]}));
 let who='',started=null,cur=0,writing='';
