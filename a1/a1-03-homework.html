@@ -105,15 +105,15 @@ body.end .top{display:none}
 .cam.gus .nm{color:var(--teal-d,#0f8f7c)}.cam.gus img{background:#DDF5EF;object-position:50% 6%}
 .cam.waffle .nm,.cam.pixel .nm{color:#B5651D}.cam.waffle img,.cam.pixel img{background:#FFEBD2;object-position:50% 12%}
 </style></head><body>
-<header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 3</h1><span class="prog" id="prog">0 / 7</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
+<header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 3</h1><span class="prog" id="prog">0 / 8</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
 <main class="wrap">
 
 <section class="step on" id="s0">
   <div class="card">
     <div class="eyebrow">Homework · Lesson 3</div>
     <h2>On the farm</h2>
-    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 7 short tasks about farm life, farm jobs and baby animals. At the end you get a report card for your teacher!</div></div>
-    <p class="ru">7 заданий, примерно 22 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
+    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 8 short tasks about farm life, farm jobs and baby animals. At the end you get a report card for your teacher!</div></div>
+    <p class="ru">8 заданий, примерно 25 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
     <label class="f">Your name <input id="name" autocomplete="given-name" placeholder="Your name"></label>
     <div class="row"><button class="btn coral" id="start" disabled>Start →</button></div>
   </div>
@@ -172,13 +172,26 @@ const TASKS=[
   ['A baby chicken is a ___.','chick'],
   ['A baby cat is a ___.','kitten'],
   ['A small horse is a ___.','pony']]},
- {type:'mcq',title:'Odd one out',ru:'Какое слово лишнее? Выбери его.',cam:['max_hmm','One word does not belong here. Which one?'],items:[
-  ['cow · sheep · duck · tractor',['cow','sheep','duck','tractor'],'tractor'],
-  ['calf · lamb · puppy · horse',['calf','lamb','puppy','horse'],'horse'],
-  ['feed · plant · pick · farmer',['feed','plant','pick','farmer'],'farmer'],
-  ['milk · eggs · apples · gate',['milk','eggs','apples','gate'],'gate'],
-  ['field · garden · flat · farm',['field','garden','flat','farm'],'flat']]},
- {type:'select',title:'Words of the lesson',ru:'Слова из памятки от 19 ноября. Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_game','Do you remember the words from your word card? Fill the gaps!'],
+ {type:'mcq',title:'From your memo',ru:'Задание по памятке: правило и ловушка. Можно подсматривать в памятку!',cam:['max_think','Open your memo! Look at the rule and the trap, then choose.'],items:[
+  ['One sheep, two ___.',['sheep','sheeps'],'sheep'],
+  ['One calf, three ___.',['calves','calfs'],'calves'],
+  ['A pony is ___.',['a small horse','a baby horse','a baby cow'],'a small horse'],
+  ['I ___ my cat. She loves it!',['stroke','touch'],'stroke'],
+  ['Please don’t ___ the hot oven!',['touch','stroke'],'touch'],
+  ['Lucy ___ the ducks every morning.',['feeds','feed'],'feeds']]},
+ {type:'select',title:'Words of the lesson',ru:'Слова из памятки к уроку 3. Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_smile','New words from your memo! Fill the gaps.'],
+  box:['city farm','flat','in the middle of','field','gate','calf','lamb','duckling','chick','pony'],items:[
+  ['There’s a ___ in London. You can see cows and sheep there!','city farm'],
+  ['I live in a ___ on the fourth floor.','flat'],
+  ['The farm isn’t outside the city. It’s ___ the city.','in the middle of'],
+  ['The cows eat grass in the ___.','field'],
+  ['We meet at the farm ___ at ten o’clock.','gate'],
+  ['The baby cow is small. The ___ drinks milk.','calf'],
+  ['The ___ is white and soft. Its mum is a sheep.','lamb'],
+  ['The little ___ swims after its mum on the water.','duckling'],
+  ['The hen has got a small yellow ___.','chick'],
+  ['My little sister rides a ___ at the farm.','pony']]},
+ {type:'select',title:'Words from your word card',ru:'Слова из памятки от 19 ноября. Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_game','Do you remember the words from your word card? Fill the gaps!'],
   box:['probably','film','flat','middle','gate','visit','pick','move','stroke','our'],items:[
   ['We live in a ___ on the third floor of a big house.','flat'],
   ['Close the ___, please! The sheep can run away.','gate'],

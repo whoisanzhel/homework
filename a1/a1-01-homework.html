@@ -105,15 +105,15 @@ body.end .top{display:none}
 .cam.gus .nm{color:var(--teal-d,#0f8f7c)}.cam.gus img{background:#DDF5EF;object-position:50% 6%}
 .cam.waffle .nm,.cam.pixel .nm{color:#B5651D}.cam.waffle img,.cam.pixel img{background:#FFEBD2;object-position:50% 12%}
 </style></head><body>
-<header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 1</h1><span class="prog" id="prog">0 / 8</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
+<header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 1</h1><span class="prog" id="prog">0 / 9</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
 <main class="wrap">
 
 <section class="step on" id="s0">
   <div class="card">
     <div class="eyebrow">Homework · Lesson 1</div>
     <h2>Friends, be and have got</h2>
-    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 8 short tasks about friends, be and have got. At the end you get a report card for your teacher!</div></div>
-    <p class="ru">8 заданий, примерно 25 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
+    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 9 short tasks about friends, be and have got. At the end you get a report card for your teacher!</div></div>
+    <p class="ru">9 заданий, примерно 25 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
     <label class="f">Your name <input id="name" autocomplete="given-name" placeholder="Your name"></label>
     <div class="row"><button class="btn coral" id="start" disabled>Start →</button></div>
   </div>
@@ -185,18 +185,25 @@ const TASKS=[
   ['Has Cam got a sister? — Yes, ___.',['he has','he is','he have'],'he has'],
   ['Have you got a dog? — No, ___.',['I haven’t','I hasn’t','I’m not'],'I haven’t'],
   ['Are you twelve? — No, ___.',['I’m not','I haven’t','I amn’t'],'I’m not']]},
- {type:'select',title:'Words of the lesson',ru:'Слова из урока 1. Выбери подходящее слово, каждое — один раз. Можно подсматривать в урок!',cam:['max_game','Do you remember the words from our lesson? Fill the gaps!'],
-  box:['best friend','close friend','the country','share','chat online','an only child','lonely','parrot','cousin','spend'],items:[
-  ['My grandparents live in ___. There are fields and animals.','the country'],
+ {type:'mcq',title:'From your memo',ru:'Задание по памятке: правило и ловушка. Можно подсматривать в памятку!',cam:['max_think','Open your memo! Look at the rule and the trap, then choose.'],items:[
+  ['Tom and Kenji ___ friends on KidsWorld.',['are','is','have got'],'are'],
+  ['Maria ___ any brothers or sisters.',['hasn’t got','isn’t','haven’t got'],'hasn’t got'],
+  ['“He’s got a parrot.” Here he’s = ___',['he has','he is'],'he has'],
+  ['“She’s from Spain.” Here she’s = ___',['she is','she has'],'she is'],
+  ['Have you got a pet? — Yes, ___.',['I have','I have got','I am'],'I have'],
+  ['How old are you? — ___',['I’m eleven.','I have eleven years.','I’ve got eleven.'],'I’m eleven.']]},
+ {type:'select',title:'Words of the lesson',ru:'Слова из памятки к уроку 1. Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_game','Do you remember the words from your memo? Fill the gaps!'],
+  box:['best friend','town','share','every evening','an only child','lonely','parrot','cousin','spend','trust'],items:[
+  ['Emma lives in a small ___ in Canada.','town'],
   ['Tom’s pet is a ___. It can say “Hello!”','parrot'],
   ['I haven’t got a brother or a sister. I’m ___.','an only child'],
   ['We ___ a room: my sister and I sleep in it.','share'],
-  ['I often ___ with my cousins in Mexico in the evening.','chat online'],
+  ['Maria chats online with her cousins ___.','every evening'],
   ['Her mum’s sister’s son is her ___.','cousin'],
   ['I don’t have many friends here, so I feel ___ sometimes.','lonely'],
   ['Kenji’s ___ is Yuki. He likes him most.','best friend'],
   ['We ___ the weekend at my grandma’s house.','spend'],
-  ['Lina isn’t my best friend, but she is a very ___.','close friend']]},
+  ['Lina never tells my secrets. I ___ her.','trust']]},
  {type:'write',title:'About me',ru:'Напиши 5–6 предложений о себе: имя, возраст, семья, лучший друг. Используй I’m и I’ve got / I haven’t got.',cam:['max_dream','Last one! Tell me about you. I’m putting it in my video!'],
   placeholder:'Hi! I’m … and I’m … years old. I’ve got…'}
 ];

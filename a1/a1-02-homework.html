@@ -105,15 +105,15 @@ body.end .top{display:none}
 .cam.gus .nm{color:var(--teal-d,#0f8f7c)}.cam.gus img{background:#DDF5EF;object-position:50% 6%}
 .cam.waffle .nm,.cam.pixel .nm{color:#B5651D}.cam.waffle img,.cam.pixel img{background:#FFEBD2;object-position:50% 12%}
 </style></head><body>
-<header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 2</h1><span class="prog" id="prog">0 / 8</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
+<header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 2</h1><span class="prog" id="prog">0 / 9</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
 <main class="wrap">
 
 <section class="step on" id="s0">
   <div class="card">
     <div class="eyebrow">Homework · Lesson 2</div>
     <h2>Family and possessives</h2>
-    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 8 short tasks about family words and possessives (my, mine, ’s). At the end you get a report card for your teacher!</div></div>
-    <p class="ru">8 заданий, примерно 25 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
+    <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 9 short tasks about family words and possessives (my, mine, ’s). At the end you get a report card for your teacher!</div></div>
+    <p class="ru">9 заданий, примерно 25 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
     <label class="f">Your name <input id="name" autocomplete="given-name" placeholder="Your name"></label>
     <div class="row"><button class="btn coral" id="start" disabled>Start →</button></div>
   </div>
@@ -180,12 +180,19 @@ const TASKS=[
   ['After a plural noun ending in -s, the apostrophe goes ___ the s.',['after','before'],'after'],
   ['Its (without an apostrophe) means ___.',['belonging to it','it is'],'belonging to it'],
   ['Is it correct? “These are my brother’s toys.” (one brother)',['yes','no'],'yes']]},
- {type:'select',title:'Words of the lesson',ru:'Слова из урока 2. Выбери подходящее слово, каждое — один раз. Можно подсматривать в урок!',cam:['max_game','Time to check the words of the lesson!'],
-  box:['uncle','aunt','cousin','niece','nephew','grandparents','great-grandmother','wardrobe','clothes','twins'],items:[
-  ['Tom’s dad has a brother, Jack. Jack is Tom’s ___.','uncle'],
+ {type:'mcq',title:'From your memo',ru:'Задание по памятке: правило и ловушка. Можно подсматривать в памятку!',cam:['max_think','Open your memo! Look at the rule and the trap, then choose.'],items:[
+  ['This bag isn’t yours. It’s ___.',['mine','my'],'mine'],
+  ['Which is right?',['It’s my bag.','It’s mine bag.'],'It’s my bag.'],
+  ['The cat is playing with ___ ball.',['its','it’s'],'its'],
+  ['___ my dog. His name is Max.',['It’s','Its'],'It’s'],
+  ['This is ___ parrot. (Tom)',['Tom’s','Toms’','Tom'],'Tom’s'],
+  ['The ___ room is big. (two girls)',['girls’','girl’s','girls'],'girls’']]},
+ {type:'select',title:'Words of the lesson',ru:'Слова из памятки к уроку 2. Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_game','Time to check the words from your memo!'],
+  box:['tall','aunt','together','niece','nephew','grandparents','great-grandmother','wardrobe','clothes','twins'],items:[
+  ['My brother is very ___. He plays basketball.','tall'],
   ['Lily’s mum has a sister. She is Lily’s ___.','aunt'],
   ['My ___ live in the country: they are my mum’s parents.','grandparents'],
-  ['Ben is my uncle’s son. He is my ___.','cousin'],
+  ['Mum, Dad and I sing ___ in the car.','together'],
   ['My sister has a daughter, Mia. Mia is my ___.','niece'],
   ['My sister has a son, Max. Max is my ___.','nephew'],
   ['My grandpa’s mum is very old. She is my ___.','great-grandmother'],
