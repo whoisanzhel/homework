@@ -104,6 +104,7 @@ body.end .top{display:none}
 .cam.gran .nm{color:#6A3FA0}.cam.gran img{background:#EADFFF;object-position:50% 6%}
 .cam.gus .nm{color:var(--teal-d,#0f8f7c)}.cam.gus img{background:#DDF5EF;object-position:50% 6%}
 .cam.waffle .nm,.cam.pixel .nm{color:#B5651D}.cam.waffle img,.cam.pixel img{background:#FFEBD2;object-position:50% 12%}
+.q .clk{width:96px;height:96px;display:block;margin:6px 0}
 </style></head><body>
 <header class="top"><div class="top-in"><h1>Cam’s mission · Lesson 8</h1><span class="prog" id="prog">0 / 8</span></div><div class="bar"><i id="bar"></i></div><nav class="tn" id="tn" aria-label="Tasks"></nav></header>
 <main class="wrap">
@@ -180,7 +181,9 @@ const TASKS=[
   ['The shop has a ___! Everything is cheap.',['sale','sell','selling'],'sale'],
   ['You want a cap. Which sentence is polite?',['I’d like a cap, please.','I want a cap.','Give me a cap.'],'I’d like a cap, please.'],
   ['You like the hoodie and you buy it. You say: “___”',['I’ll take it.','I’ll make it.','I’ll give it.'],'I’ll take it.'],
-  ['In the US a lift is an ___.',['elevator','escalator','elbow'],'elevator']]},
+  ['In the US a lift is an ___.',['elevator','escalator','elbow'],'elevator'],
+  ['The seller offers you a bag. Which question is right?',['Would you like a bag?','Do you like a bag?','Are you like a bag?'],'Would you like a bag?'],
+  ['You want to buy a hoodie. Which sentence is right?',['I’d like to buy a hoodie.','I’d like buy a hoodie.','I’d like to a hoodie.'],'I’d like to buy a hoodie.']]},
  {type:'select',title:'Words of the lesson',ru:'Слова из памятки к уроку 8. Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_smile','New words from your memo! Fill the gaps.'],
   box:['shopping centre','customer','busy','expensive','cheap','lift','escalator','sale','special offer','enjoy yourself'],items:[
   ['Fuzz Mall is a big ___ with lots of shops.','shopping centre'],
@@ -244,14 +247,17 @@ function show(n){document.querySelectorAll('.step').forEach(e=>e.classList.remov
   navUpd();const on=tn.querySelector('.on');if(on)tn.scrollTo({left:Math.max(0,on.offsetLeft-tn.clientWidth/2),behavior:'smooth'});
   window.scrollTo({top:0,behavior:'smooth'});}
 
-/* mcq: tap one option, checked at once */
+/* analogue clock for mcq items with a 4th element [h,m] */
+function clockSVG(h,m){const R=Math.PI/180,ha=(h%12+m/60)*30,ma=m*6;let t='';for(let k=0;k<12;k++){const a=k*30*R;t+=`<line x1="${(50+38*Math.sin(a)).toFixed(1)}" y1="${(50-38*Math.cos(a)).toFixed(1)}" x2="${(50+43*Math.sin(a)).toFixed(1)}" y2="${(50-43*Math.cos(a)).toFixed(1)}" stroke="#1D1A3B" stroke-width="${k%3?2:4}"/>`;}return `<svg class="clk" viewBox="0 0 100 100" role="img" aria-label="clock"><circle cx="50" cy="50" r="47" fill="#fff" stroke="#1D1A3B" stroke-width="4"/>${t}<line x1="50" y1="50" x2="${(50+24*Math.sin(ha*R)).toFixed(1)}" y2="${(50-24*Math.cos(ha*R)).toFixed(1)}" stroke="#1D1A3B" stroke-width="6" stroke-linecap="round"/><line x1="50" y1="50" x2="${(50+35*Math.sin(ma*R)).toFixed(1)}" y2="${(50-35*Math.cos(ma*R)).toFixed(1)}" stroke="#7E57F5" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="50" r="4" fill="#1D1A3B"/></svg>`;}
+
+/* mcq: tap one option, checked at once. Item: [question, options, answer, clk?] where clk=[h,m] draws a clock under the question */
 function mkMcq(t,k,body){let left=t.items.length;
-  t.items.forEach(([q,o,a],i)=>{const d=document.createElement('div');d.className='q';
-    d.innerHTML=`<div class="qt"><span class="n">${i+1}.</span>${esc(q).replace('___','<span class="blank">?</span>')}</div>`;
+  t.items.forEach(([q,o,a,clk],i)=>{const d=document.createElement('div');d.className='q';
+    d.innerHTML=`<div class="qt"><span class="n">${i+1}.</span>${esc(q).replace('___','<span class="blank">?</span>')}</div>`+(clk?clockSVG(clk[0],clk[1]):'');
     const op=document.createElement('div');op.className='opts';
     (t.fixed?o:shuffle(o)).forEach(x=>{const b=document.createElement('button');b.className='opt';b.type='button';b.textContent=x;
       b.onclick=()=>{[...op.children].forEach(c=>{c.disabled=true;if(c.textContent===a)c.classList.add('right');});
-        if(x===a)R[k].got++;else{b.classList.add('wrong');R[k].mist.push([q,x,a]);}
+        if(x===a)R[k].got++;else{b.classList.add('wrong');R[k].mist.push([clk?q+' ('+clk[0]+':'+String(clk[1]).padStart(2,'0')+')':q,x,a]);}
         d.classList.add(x===a?'done-ok':'done-no');const bl=d.querySelector('.blank');if(bl)bl.textContent=a;upScore(k);if(--left===0)finish(k);};
       op.appendChild(b);});
     d.appendChild(op);body.appendChild(d);});}
@@ -273,16 +279,18 @@ function mkGaps(t,k,body){let last=null;const ans=[];
       if(ok)R[k].got++;else{R[k].mist.push([ctx[i]||`(${i+1})`,el.value.trim()||'—',a]);el.insertAdjacentHTML('afterend',`<span class="fix">${a}</span>`);}});
     row.firstChild.disabled=true;finish(k);};}
 
-/* order: tap tiles to build a question */
+/* order: tap tiles to build a sentence. Item: [answer, tiles, extraTile?, ctx?]
+   extraTile = the tile left over (hidden from the hint line); ctx = text shown in bold above the tiles (e.g. Cam's answer).
+   Final punctuation: taken from the answer if it ends in . ? !, else '.' when the task has stmt:1, else '?' */
 function mkOrder(t,k,body){let left=t.items.length;
-  t.items.forEach(([a,tiles,ex],i)=>{const vis=tiles.filter(x=>ex?x!==ex:(x!=='Do'&&x!=='Does'));const d=document.createElement('div');d.className='q';
-    d.innerHTML=`<div class="qt"><span class="n">${i+1}.</span>${esc(vis.join(' / '))}</div><div class="line"></div><div class="pool"></div><div class="row" style="margin-top:8px"><button class="btn teal" type="button" style="min-height:42px;padding:6px 14px">Check</button><span class="hint">? is added for you</span></div>`;
+  t.items.forEach(([a,tiles,ex,ctx],i)=>{const P=(String(a).match(/[.?!]$/)||[t.stmt?'.':'?'])[0];a=String(a).replace(/[.?!]+$/,'');const vis=tiles.filter(x=>ex?x!==ex:(x!=='Do'&&x!=='Does'));const d=document.createElement('div');d.className='q';
+    d.innerHTML=`<div class="qt"><span class="n">${i+1}.</span>${ctx?"<b>"+esc(ctx)+"</b><br>":""}${esc(vis.join(' / '))}</div><div class="line"></div><div class="pool"></div><div class="row" style="margin-top:8px"><button class="btn teal" type="button" style="min-height:42px;padding:6px 14px">Check</button><span class="hint">${P} is added for you</span></div>`;
     const line=d.querySelector('.line'),pool=d.querySelector('.pool'),chk=d.querySelector('button');
     shuffle(tiles).forEach(w=>{const b=document.createElement('button');b.type='button';b.className='tile';b.textContent=w;
       b.onclick=()=>{if(chk.disabled)return;(b.parentNode===pool?line:pool).appendChild(b);};pool.appendChild(b);});
     chk.onclick=()=>{const got=[...line.children].map(b=>b.textContent).join(' ');if(!got){return;}
       chk.disabled=true;d.querySelectorAll('.tile').forEach(b=>b.disabled=true);
-      const ok=norm(got)===norm(a);if(ok)R[k].got++;else{R[k].mist.push([vis.join(' / '),got+'?',a+'?']);d.insertAdjacentHTML('beforeend',`<div class="right-a">✓ ${esc(a)}?</div>`);}
+      const ok=norm(got)===norm(a);if(ok)R[k].got++;else{R[k].mist.push([vis.join(' / '),got+P,a+P]);d.insertAdjacentHTML('beforeend',`<div class="right-a">✓ ${esc(a)}${P}</div>`);}
       d.classList.add(ok?'done-ok':'done-no');upScore(k);if(--left===0)finish(k);};
     body.appendChild(d);});}
 
@@ -336,7 +344,7 @@ function reportText(got,tot,pct,end,mins,left){
    .concat(left.length?[`Not finished: task ${left.join(', ')}`]:[])
    .concat(R.map((r,k)=>`${k+1}. ${TASKS[k].title}: ${status(r,k)}`))
    .concat(R.some(r=>r.mist.length)?['Mistakes:']:[]).concat(R.flatMap((r,k)=>r.mist.map(m=>`  ${k+1}) ${m[0]} — ${m[1]} → ${m[2]}`)))
-   .concat(['Family habits:',writing||'—']).join('\n');
+   .concat([(HW.wlabel||'Family habits')+':',writing||'—']).join('\n');
 }
 $('#copy').onclick=async()=>{try{await navigator.clipboard.writeText(window.__report||'');$('#copyMsg').textContent='Copied! Paste it into your message.';}
   catch(e){const ta=document.createElement('textarea');ta.value=window.__report||'';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');$('#copyMsg').textContent='Copied!';}catch(e2){$('#copyMsg').textContent='Could not copy: take a screenshot.';}ta.remove();}};
