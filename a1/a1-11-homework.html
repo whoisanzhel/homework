@@ -153,7 +153,7 @@ const TASKS=[
   ['A: Can I have ___ gloves on the shelf over there? B: Sure!',['those','these','that','this'],'those']]},
  {type:'mcq',title:'Mia in the shop',ru:'Прочитай текст и выбери слово для каждого пропуска (1)–(8).',
   read:'<p><b>A new jacket</b></p><p>Mia and her mum are in a clothes shop. Mia holds up a green jacket. She looks at (1) in the mirror. “Mum, do you like (2) jacket?” Mum says, “It’s nice, but it’s too small. Try (3) big jacket over there! I’m taking a photo of (4).” Then Mia sees two friends. She knows (5) from school. “Hello!” she says. “Can you help (6) with the jacket?” The friends say, “Of course! We like (7) shop here. Look at (8) boots over there!”</p>',
-  fixed:1,cam:['max_hmm','Mia and her mum are shopping too. Read their story and choose A, B or C.'],items:[
+  cam:['max_hmm','Mia and her mum are shopping too. Read their story and choose A, B or C.'],items:[
   ['Gap (1): She looks at ___ in the mirror.',['her','herself','she'],'herself'],
   ['Gap (2): ‘do you like ___ jacket?’',['this','that','these'],'this'],
   ['Gap (3): ‘Try ___ big jacket over there!’',['that','this','those'],'that'],
@@ -351,5 +351,54 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
+</script>
+<script>
+/* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
+(function(){
+  if(window.__optMix)return;window.__optMix=true;
+  function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function key(a){return a.map(function(x){return x.textContent;}).join('|');}
+  function mix(a){if(a.length<2)return a;var k=key(a),r=a,n=0;do{r=sh(a);n++;}while(key(r)===k&&n<8);return r;}
+  /* 1. dropdown gaps: <select> with a "…" placeholder first. data-noshuffle opts out */
+  function fixSelect(s){
+    if(s.__mix||s.hasAttribute('data-noshuffle'))return;
+    var os=[].slice.call(s.options);if(!os.length||os[0].value!=='')return;
+    s.__mix=1;os.shift();if(os.length<2)return;
+    mix(os).forEach(function(o){s.appendChild(o);});
+  }
+  /* 2. homework gaps: word box of buttons */
+  function fixBox(b){
+    if(b.__mix||b.hasAttribute('data-noshuffle'))return;
+    var ch=[].slice.call(b.children);
+    if(ch.length<3||!ch.every(function(c){return c.tagName==='BUTTON';}))return;
+    b.__mix=1;mix(ch).forEach(function(c){b.appendChild(c);});
+  }
+  /* 3. old lessons: A / B / C buttons with a bold letter; keep the letters in order after shuffling */
+  function fixLetters(o){
+    if(o.__mix||o.hasAttribute('data-noshuffle'))return;
+    var bs=[].slice.call(o.children);
+    if(bs.length<2||!bs.every(function(b){var l=b.querySelector&&b.querySelector('b');return b.tagName==='BUTTON'&&l&&/^[A-F]$/.test(l.textContent);}))return;
+    o.__mix=1;mix(bs).forEach(function(b){o.appendChild(b);});
+    [].slice.call(o.children).forEach(function(b,i){b.querySelector('b').textContent='ABCDEF'.charAt(i);});
+  }
+  /* 4. old lessons: two buttons inside a sentence (pick2) */
+  function fixPair(d){
+    if(d.__mix||d.hasAttribute('data-noshuffle'))return;
+    var ps=[].slice.call(d.querySelectorAll(':scope > .pk2'));
+    if(ps.length<2)return;
+    d.__mix=1;var anchor=ps[ps.length-1].nextSibling;
+    mix(ps).forEach(function(b){d.insertBefore(b,anchor);});
+  }
+  function scan(){
+    [].forEach.call(document.querySelectorAll('select'),fixSelect);
+    [].forEach.call(document.querySelectorAll('.box'),fixBox);
+    [].forEach.call(document.querySelectorAll('.q .opts'),fixLetters);
+    [].forEach.call(document.querySelectorAll('.sent'),fixPair);
+  }
+  var tm=null;
+  function later(){clearTimeout(tm);tm=setTimeout(scan,0);}
+  scan();
+  try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
+})();
 </script>
 </body></html>
