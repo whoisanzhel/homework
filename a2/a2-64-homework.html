@@ -282,7 +282,14 @@ function mkGaps(t,k,body){let last=null;const ans=[];
 /* order: tap tiles to build a sentence. Item: [answer, tiles, extraTile?, ctx?]
    extraTile = the tile left over (hidden from the hint line); ctx = text shown in bold above the tiles (e.g. Cam's answer).
    Final punctuation: taken from the answer if it ends in . ? !, else '.' when the task has stmt:1, else '?' */
-function mkOrder(t,k,body){let left=t.items.length;
+/* order tasks: the line of words above the answer must not already be the answer */
+function mixHints(t){const w=s=>String(s).toLowerCase().replace(/[\u2019`\u00b4]/g,"'").replace(/[.,?!:;"\u201c\u201d]/g,' ').split(/\s+/).filter(Boolean);
+  (t.items||[]).forEach(it=>{const a=w(it[0]),tiles=it[1];if(!Array.isArray(tiles))return;
+    const skip=[].concat(t.extra||['Do','Does'],typeof it[2]==='string'?[it[2]]:[]);
+    const gives=list=>{let p=0,n=0;const ok=list.filter(x=>!skip.includes(x)&&!/^(do|does|is)$/i.test(x)).every(x=>{const q=w(x),at=from=>{for(let i=from;i<a.length;i++)if(q.every((s,j)=>a[i+j]===s))return i;return -1;};
+      if(!q.length||at(0)<0)return true;n++;const i=at(p);if(i<0)return false;p=i+q.length;return true;});return ok&&n>1;};
+    if(!gives(tiles))return;let m=tiles;for(let r=0;r<40&&gives(m);r++)m=shuffle(tiles);if(gives(m))m=tiles.slice().reverse();it[1]=m;});}
+function mkOrder(t,k,body){mixHints(t);let left=t.items.length;
   t.items.forEach(([a,tiles,ex,ctx],i)=>{const P=(String(a).match(/[.?!]$/)||[t.stmt?'.':'?'])[0];a=String(a).replace(/[.?!]+$/,'');const vis=tiles.filter(x=>ex?x!==ex:(x!=='Do'&&x!=='Does'));const d=document.createElement('div');d.className='q';
     d.innerHTML=`<div class="qt"><span class="n">${i+1}.</span>${ctx?"<b>"+esc(ctx)+"</b><br>":""}${esc(vis.join(' / '))}</div><div class="line"></div><div class="pool"></div><div class="row" style="margin-top:8px"><button class="btn teal" type="button" style="min-height:42px;padding:6px 14px">Check</button><span class="hint">${P} is added for you</span></div>`;
     const line=d.querySelector('.line'),pool=d.querySelector('.pool'),chk=d.querySelector('button');
