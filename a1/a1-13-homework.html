@@ -144,13 +144,13 @@ document.querySelectorAll('img[data-r]').forEach(i=>{if(RB[i.dataset.r])i.src=RB
 /* ---------- tasks (reworked from Workbook p. 24–25) ---------- */
 const TASKS=[
  {type:'mcq',title:'Choose the question word',ru:'Выбери вопросительное слово: who, where, when, which, how, how many.',cam:['max_think','I’m asking questions about the farm and our newspaper. Which question word fits?'],items:[
-  ['___ is the editor of Kids’ News? — Nia.',['Who','Where','When'],'Who'],
+  ['___ is the editor of Kids’ News? — Dot.',['Who','Where','When'],'Who'],
   ['___ do the sheep sleep? — In the barn.',['Where','Who','When'],'Where'],
   ['___ is the newspaper ready? — On Friday.',['When','Where','How many'],'When'],
   ['___ cows are in the field? — Twelve.',['How many','How','Which'],'How many'],
   ['___ pony is Daisy, the black one or the brown one? — The brown one.',['Which','Who','How'],'Which'],
   ['___ do you get to the farm? — By bus.',['How','Where','Who'],'How'],
-  ['___ is Cam’s best friend? — Lily.',['Who','Which','How many'],'Who'],
+  ['___ is Cam’s best friend? — Bella.',['Who','Which','How many'],'Who'],
   ['___ eggs does the hen lay every day? — Two.',['How many','When','Which'],'How many']]},
  {type:'mcq',title:'Which is correct?',ru:'В одном вопросе ошибка в слове или в порядке слов. Выбери верный вопрос.',cam:['max_hmm','Oh no, one question in each pair has a mistake. Find the right one!'],items:[
   ['Answer: “In Fuzzburg.”',['Where do you live?','Where you live?'],'Where do you live?'],
@@ -354,8 +354,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -403,5 +401,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

@@ -182,7 +182,7 @@ const TASKS=[
   ['poem · story · review · sneeze',['poem','story','review','sneeze'],'sneeze']]},
  {type:'mcq',title:'From your memo',fixed:1,ru:'Задание по памятке: Right / Wrong / Doesn’t say, magazine, news. Можно подсматривать в памятку!',cam:['max_think','Open your memo! Look at the rules and the traps.'],items:[
   ['Text: “Tim writes sport news.” Statement: “Tim writes about music.”',['Right','Wrong','Doesn’t say'],'Wrong'],
-  ['Text: “Nia is a reporter.” Statement: “Nia is eleven.”',['Right','Wrong','Doesn’t say'],'Doesn’t say'],
+  ['Text: “Dot is a reporter.” Statement: “Dot is eleven.”',['Right','Wrong','Doesn’t say'],'Doesn’t say'],
   ['Text: “Cam has got a camera.” Statement: “Cam has a camera.”',['Right','Wrong','Doesn’t say'],'Right'],
   ['A magazine is…',['a place where you buy things','a thing you read'],'a thing you read'],
   ['The news ___ good today.',['are','is'],'is'],
@@ -360,8 +360,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -409,5 +407,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

@@ -145,18 +145,18 @@ document.querySelectorAll('img[data-r]').forEach(i=>{if(RB[i.dataset.r])i.src=RB
 /* ---------- tasks (extra lesson: be or do; own sentences, no Workbook page) ---------- */
 const TASKS=[
  {type:'mcq',title:'Cam’s film crew',ru:'Прочитай текст про команду Кэма и выбери ответ A, B или C.',
-  read:'<p><b>Cam’s film crew</b></p><p>Cam is the camera guy of our film crew. Leo and Lily are in the crew too. Leo is eleven. He is good at drawing. Lily is not good at drawing, but she plays the guitar. Every day the crew meets at four o’clock. They are tired after school, but they love film days!</p>',
+  read:'<p><b>Cam’s film crew</b></p><p>Cam is the camera guy of our film crew. Leo and Bella are in the crew too. Leo is eleven. He is good at drawing. Bella is not good at drawing, but she plays the guitar. Every day the crew meets at four o’clock. They are tired after school, but they love film days!</p>',
   cam:['max_wow','Meet my film crew! Read about us first.'],items:[
   ['Cam is ___.',['the camera guy','a teacher','a farmer'],'the camera guy'],
-  ['Who is eleven?',['Leo','Lily','Cam'],'Leo'],
+  ['Who is eleven?',['Leo','Bella','Cam'],'Leo'],
   ['Leo is good at ___.',['drawing','the guitar','football'],'drawing'],
-  ['Lily plays ___.',['the guitar','chess','football'],'the guitar'],
+  ['Bella plays ___.',['the guitar','chess','football'],'the guitar'],
   ['The crew meets ___.',['at four o’clock','at five o’clock','at nine o’clock'],'at four o’clock'],
   ['After school the crew is ___.',['tired','angry','hungry'],'tired']]},
  {type:'mcq',title:'Be or do?',ru:'Выбери правильное слово: am / is / are или do / does. Смотри, что стоит дальше: описание или действие.',cam:['max_think','My machine is broken again. Which little word is right?'],items:[
   ['We ___ in the same class.',['are','do'],'are'],
-  ['Lily ___ like spiders.',['doesn’t','isn’t'],'doesn’t'],
-  ['Lily ___ afraid of spiders.',['isn’t','doesn’t'],'isn’t'],
+  ['Bella ___ like spiders.',['doesn’t','isn’t'],'doesn’t'],
+  ['Bella ___ afraid of spiders.',['isn’t','doesn’t'],'isn’t'],
   ['Cam ___ a video every day.',['films','is films'],'films'],
   ['___ your friends good at English?',['Are','Do'],'Are'],
   ['___ your friends like English?',['Do','Are'],'Do'],
@@ -164,10 +164,10 @@ const TASKS=[
   ['I ___ not like fish.',['do','am'],'do']]},
  {type:'gaps',title:'Cam’s ID card',ru:'Впиши слово из рамки. Нажми на слово в рамке, чтобы вставить его в пропуск. Каждое слово — один раз.',cam:['max_lol','This is my ID card. The little words ran away!'],
   box:['am','is','are','does','do','doesn’t','isn’t','don’t'],
-  text:'Hello! I {am} Cam. My camera {is} yellow and it {doesn’t} like water. My friends Leo and Lily {are} in my crew. They {don’t} like early mornings. Lily {isn’t} good at chess. Leo {does} his homework at school. And you? What {do} you do every day?'},
+  text:'Hello! I {am} Cam. My camera {is} yellow and it {doesn’t} like water. My friends Leo and Bella {are} in my crew. They {don’t} like early mornings. Bella {isn’t} good at chess. Leo {does} his homework at school. And you? What {do} you do every day?'},
  {type:'order',title:'Make questions',ru:'Собери вопрос: нажимай на слова по порядку. Одно слово лишнее.',cam:['max_wink','Now I ask the questions! Help me.'],items:[
   ['Is Cam in the kitchen',['Is','Does','Cam','in','the kitchen']],
-  ['Does Lily like pizza',['Does','Is','Lily','like','pizza']],
+  ['Does Bella like pizza',['Does','Is','Bella','like','pizza']],
   ['Are your parents at work',['Are','Do','your parents','at work']],
   ['Do you do your homework',['Do','Are','you','do','your homework']],
   ['How old is your sister',['How old','is','your sister','does']]]},
@@ -176,20 +176,20 @@ const TASKS=[
   ['Choose the correct question.',['Does Leo play the guitar?','Is Leo play the guitar?'],'Does Leo play the guitar?'],
   ['Choose the correct sentence.',['I don’t like quizzes.','I’m not like quizzes.'],'I don’t like quizzes.'],
   ['Choose the correct question.',['Are you busy today?','Do you busy today?'],'Are you busy today?'],
-  ['Choose the correct sentence.',['Lily doesn’t do the dishes.','Lily doesn’t does the dishes.'],'Lily doesn’t do the dishes.'],
+  ['Choose the correct sentence.',['Bella doesn’t do the dishes.','Bella doesn’t does the dishes.'],'Bella doesn’t do the dishes.'],
   ['Choose the correct question.',['Where are you from?','Where do you from?'],'Where are you from?']]},
  {type:'mcq',title:'From your memo',ru:'Задание по шпаргалке: правило и ловушка. Можно подсматривать в шпаргалку!',cam:['max_think','Open your cheat sheet! Look at the rule and the trap, then choose.'],items:[
   ['How old ___ you?',['are','do','does'],'are'],
   ['Does Leo ___ pizza?',['like','likes','is'],'like'],
   ['Choose the correct sentence.',['He isn’t angry.','He doesn’t angry.','He don’t angry.'],'He isn’t angry.'],
   ['Choose the correct question.',['What does Pat do?','What is Pat do?','What Pat does?'],'What does Pat do?'],
-  ['Is Lily tired? — Yes, she ___.',['is','does','are'],'is'],
+  ['Is Bella tired? — Yes, she ___.',['is','does','are'],'is'],
   ['Do you like cats? — No, I ___.',['don’t','am not','isn’t'],'don’t']]},
  {type:'select',title:'Signal words',ru:'Слова-подсказки из шпаргалки к этому уроку. Выбери подходящее слово, каждое — один раз. Можно подсматривать в шпаргалку!',cam:['max_game','Signal words from your cheat sheet! Fill the gaps.'],
   box:['tired','hungry','afraid of','good at','from','How old','do homework','do the dishes','every day','What does he do?'],items:[
   ['I want to sleep. I’m ___.','tired'],
   ['It’s lunch time and I’m ___.','hungry'],
-  ['Lily is ___ spiders. She screams!','afraid of'],
+  ['Bella is ___ spiders. She screams!','afraid of'],
   ['Anna is ___ maths. Her marks are great.','good at'],
   ['My friend is ___ Spain.','from'],
   ['___ is your brother? — He is eleven.','How old'],
@@ -363,8 +363,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -412,5 +410,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

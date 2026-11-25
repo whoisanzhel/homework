@@ -145,10 +145,10 @@ document.querySelectorAll('img[data-r]').forEach(i=>{if(RB[i.dataset.r])i.src=RB
 const TASKS=[
  {type:'mcq',title:'Choose the correct sentence',ru:'Выбери правильное предложение.',cam:['max_think','I’m writing messages to my friends in the mall. Which sentence is right?'],items:[
   ['Choose the correct sentence.',['They are having lunch now.','They are have lunch now.'],'They are having lunch now.'],
-  ['Choose the correct sentence.',['Cam is waiting for Lily.','Cam is wait for Lily.'],'Cam is waiting for Lily.'],
+  ['Choose the correct sentence.',['Cam is waiting for Bella.','Cam is wait for Bella.'],'Cam is waiting for Bella.'],
   ['Choose the correct sentence.',['I am not looking at my phone.','I not am looking at my phone.'],'I am not looking at my phone.'],
   ['Choose the correct sentence.',['We are buying a present for Leo.','We buying a present for Leo.'],'We are buying a present for Leo.'],
-  ['Choose the correct sentence.',['Is Lily wearing a red hat?','Does Lily wearing a red hat?'],'Is Lily wearing a red hat?'],
+  ['Choose the correct sentence.',['Is Bella wearing a red hat?','Does Bella wearing a red hat?'],'Is Bella wearing a red hat?'],
   ['Choose the correct sentence.',['The customers aren’t standing in the queue.','The customers doesn’t standing in the queue.'],'The customers aren’t standing in the queue.'],
   ['Choose the correct sentence.',['Leo is running to the toy shop.','Leo is runing to the toy shop.'],'Leo is running to the toy shop.'],
   ['Choose the correct sentence.',['I’m taking a photo of the escalator.','I’m takeing a photo of the escalator.'],'I’m taking a photo of the escalator.']]},
@@ -156,23 +156,23 @@ const TASKS=[
   ['Are you feeling bored',['feeling','Are','Do','you','bored'],'Do'],
   ['Is Cam filming the shop',['filming','Is','the shop','Cam','Does'],'Does'],
   ['What are you doing',['doing','What','you','are','Do'],'Do'],
-  ['Where is Lily waiting',['Lily','Where','waiting','is','Does'],'Does'],
+  ['Where is Bella waiting',['Bella','Where','waiting','is','Does'],'Does'],
   ['Are they looking for the lift',['looking for','they','Are','the lift','Do'],'Do'],
   ['Is it raining outside',['it','raining','Is','outside','Does'],'Does']]},
  {type:'gaps',title:'Questions and negatives',ru:'Впиши Is, Are, is, isn’t, aren’t или am not. Нажми на слово в рамке, чтобы вставить его в пропуск.',cam:['max_lol','My notes about the mall have holes in them. Fill the little gaps!'],
   box:['Is','Are','is','are','isn’t','aren’t','am not','Am'],
-  text:'Lily is eating pizza. {Is} Lily eating pizza? — Yes, she {is}. Leo and Cam are shopping. {Are} Leo and Cam shopping? — No, they {aren’t}. I’m waiting at the gate. I {am not} waiting at the café. Coach Thunder isn’t sitting. He {is} standing.'},
+  text:'Bella is eating pizza. {Is} Bella eating pizza? — Yes, she {is}. Leo and Cam are shopping. {Are} Leo and Cam shopping? — No, they {aren’t}. I’m waiting at the gate. I {am not} waiting at the café. Coach Thunder isn’t sitting. He {is} standing.'},
  {type:'mcq',title:'Short answers',ru:'Прочитай описание картинки и выбери краткий ответ.',
-  read:'<p><b>Picture:</b> Cam is in the café. He is holding a phone and a big pizza. Lily is sitting next to him. She isn’t eating. Leo is outside the café. He is waving.</p>',
+  read:'<p><b>Picture:</b> Cam is in the café. He is holding a phone and a big pizza. Bella is sitting next to him. She isn’t eating. Leo is outside the café. He is waving.</p>',
   cam:['max_smile','Look at my picture! Answer with a short answer.'],items:[
   ['Is Cam holding a phone? — Yes, ___.',['he is','he does','they are'],'he is'],
-  ['Is Lily eating? — No, ___.',['she isn’t','she doesn’t','she aren’t'],'she isn’t'],
+  ['Is Bella eating? — No, ___.',['she isn’t','she doesn’t','she aren’t'],'she isn’t'],
   ['Is Leo inside the café? — No, ___.',['he isn’t','he doesn’t','he aren’t'],'he isn’t'],
-  ['Are Cam and Lily waving? — No, ___.',['they aren’t','they don’t','they isn’t'],'they aren’t'],
+  ['Are Cam and Bella waving? — No, ___.',['they aren’t','they don’t','they isn’t'],'they aren’t'],
   ['Is Leo waving? — Yes, ___.',['he is','he does','he waves'],'he is']]},
  {type:'mcq',title:'Every day or right now?',ru:'Выбери Present Simple (каждый день) или Present Continuous (сейчас).',cam:['max_think','Every day or right now? Look at the little words!'],items:[
   ['Cam ___ videos every day.',['films','is filming'],'films'],
-  ['Look! Lily ___ to the escalator.',['is running','runs'],'is running'],
+  ['Look! Bella ___ to the escalator.',['is running','runs'],'is running'],
   ['We ___ lunch at one o’clock every day.',['have','are having'],'have'],
   ['Leo ___ a game right now.',['is playing','plays'],'is playing'],
   ['My dad usually ___ to work by bus.',['goes','is going'],'goes'],
@@ -182,7 +182,7 @@ const TASKS=[
   ['make → ___',['making','makeing','makking'],'making'],
   ['I ___ to the café now.',['am going','am go','go'],'am going'],
   ['Are you having fun? — No, ___.',['I’m not','I don’t','I amn’t'],'I’m not'],
-  ['Lily is ___ a book.',['reading','reads','read'],'reading'],
+  ['Bella is ___ a book.',['reading','reads','read'],'reading'],
   ['What are you doing? — ___ for my phone.',['I’m looking','I look','I looking'],'I’m looking']]},
  {type:'select',title:'Words of the lesson',ru:'Слова из памятки к уроку 9. Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_smile','New words from your memo! Fill the gaps.'],
   box:['right now','at the moment','wait for','look for','wear','wave','stand','carry','pay','get ready'],items:[
@@ -197,9 +197,9 @@ const TASKS=[
   ['Please ___ at the till with your card.','pay'],
   ['The show starts at six. Let’s ___!','get ready']]},
  {type:'write',title:'What’s happening at Fuzz Mall?',ru:'Напиши 5–6 предложений о картинке: что делает каждый герой прямо сейчас. Используй am / is / are + -ing, одно отрицание и слово now или right now.',
-  read:'<p><b>Picture:</b> 🍕 Lily — in the café · 🤖 Leo — in the toy shop · 📣 Coach Thunder — at the gate · 🎥 Cam — at the escalator · 🦜 Mr Green — over the lift</p>',
+  read:'<p><b>Picture:</b> 🍕 Bella — in the café · 🤖 Leo — in the toy shop · 📣 Coach Thunder — at the gate · 🎥 Cam — at the escalator · 🦜 Mr Green — over the lift</p>',
   cam:['max_dream','Last one! Look at the mall. What is everybody doing?'],
-  placeholder:'Right now Lily is eating pizza in the café. Leo…'}
+  placeholder:'Right now Bella is eating pizza in the café. Leo…'}
 ];
 
 /* checklist for the writing task */
@@ -359,8 +359,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -408,5 +406,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

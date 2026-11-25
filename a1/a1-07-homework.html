@@ -154,12 +154,12 @@ const TASKS=[
   ['Which sentence is correct?',['Do you get up at seven?','Does you get up at seven?'],'Do you get up at seven?'],
   ['Which sentence is correct?',['The dog is hungry. Its bowl is empty.','The dog is hungry. It’s bowl is empty.'],'The dog is hungry. Its bowl is empty.'],
   ['Which sentence is correct?',['Pat doesn’t likes fish.','Pat doesn’t like fish.'],'Pat doesn’t like fish.'],
-  ['Which sentence is correct?',['Lily and Leo are cousins.','Lily and Leo is cousins.'],'Lily and Leo are cousins.'],
+  ['Which sentence is correct?',['Bella and Leo are cousins.','Bella and Leo is cousins.'],'Bella and Leo are cousins.'],
   ['Which sentence is correct?',['I am never late.','I never am late.'],'I am never late.'],
   ['Which sentence is correct?',['This ball is my.','This ball is mine.'],'This ball is mine.']]},
  {type:'order',title:'Build the sentence',ru:'Собери предложение или вопрос из плиток. Одно слово лишнее.',cam:['max_wink','Let’s make sentences and questions! Be careful: one tile is extra.'],items:[
   ['Has your cousin got a pony?',['Has','your','cousin','got','a','pony','Have'],'Have'],
-  ['This is Lily’s bag.',['This','is','Lily’s','bag','Lilys'],'Lilys'],
+  ['This is Bella’s bag.',['This','is','Bella’s','bag','Bellas'],'Bellas'],
   ['Does Pat get up at five?',['Does','Pat','get','up','at','five','gets'],'gets'],
   ['Leo doesn’t like cold milk.',['Leo','doesn’t','like','cold','milk','likes'],'likes'],
   ['We are never late for school.',['We','are','never','late','for','school','is'],'is'],
@@ -349,8 +349,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -398,5 +396,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

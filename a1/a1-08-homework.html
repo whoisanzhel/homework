@@ -151,12 +151,12 @@ const TASKS=[
   ['Dialogue B is in the ___.',['florist’s','shoe shop','bookshop','butcher’s'],'shoe shop'],
   ['Dialogue C is in the ___.',['florist’s','shoe shop','bookshop','butcher’s'],'bookshop']]},
  {type:'mcq',title:'Cam at the mall',ru:'Прочитай текст и выбери правильный ответ.',
-  read:'<p><b>A day at Fuzz Mall</b></p><p>Cam is at Fuzz Mall with Lily. They are in a clothes shop. There is a sale, and the shop is very busy. Cam likes a green jacket, but it’s expensive: forty pounds! Cam has only twenty pounds. So Lily says, “Let’s look at the T-shirts. They’re cheap!” Cam takes a yellow T-shirt for ten pounds. Then they go to the café by escalator.</p>',
+  read:'<p><b>A day at Fuzz Mall</b></p><p>Cam is at Fuzz Mall with Bella. They are in a clothes shop. There is a sale, and the shop is very busy. Cam likes a green jacket, but it’s expensive: forty pounds! Cam has only twenty pounds. So Bella says, “Let’s look at the T-shirts. They’re cheap!” Cam takes a yellow T-shirt for ten pounds. Then they go to the café by escalator.</p>',
   cam:['max_think','Do you remember my shopping day? Read about it and answer.'],items:[
   ['The clothes shop is ___.',['busy','empty','closed'],'busy'],
   ['The green jacket costs ___.',['ten pounds','twenty pounds','forty pounds'],'forty pounds'],
   ['Cam has ___.',['only twenty pounds','forty pounds','no money'],'only twenty pounds'],
-  ['Lily thinks the T-shirts are ___.',['cheap','expensive','too big'],'cheap'],
+  ['Bella thinks the T-shirts are ___.',['cheap','expensive','too big'],'cheap'],
   ['They go to the café by ___.',['lift','escalator','bus'],'escalator']]},
  {type:'mcq',title:'Choose the answer',ru:'Выбери подходящий ответ на реплику.',cam:['max_smile','People in the mall ask me questions all day. How do I answer?'],items:[
   ['Can I help you?',['Yes, I’d like a cap, please.','No, it’s Tuesday.','Yes, I’m a customer.'],'Yes, I’d like a cap, please.'],
@@ -167,7 +167,7 @@ const TASKS=[
   ['Is the café busy?',['Yes, there are lots of customers.','Yes, it’s very cheap.','No, it’s on sale.'],'Yes, there are lots of customers.']]},
  {type:'gaps',title:'Cam’s mall diary',ru:'Впиши слово из рамки. Нажми на слово в рамке, чтобы вставить его в пропуск. Каждое слово — один раз.',cam:['max_lol','This is my diary from Fuzz Mall. Some words ran away to the shops!'],
   box:['busy','customers','escalator','lift','expensive','cheap','sale','enjoy yourself'],
-  text:'Today I’m in Fuzz Mall with Roxy, Sam and Lily. The mall is very {busy}: there are lots of {customers} in every shop. We take the {escalator} because the {lift} is slow. The clothes shop has a {sale}! The jackets are {expensive}, but the T-shirts are {cheap}. Lily says: “Don’t think about money, Cam. {Enjoy yourself}!”'},
+  text:'Today I’m in Fuzz Mall with Roxy, Sam and Bella. The mall is very {busy}: there are lots of {customers} in every shop. We take the {escalator} because the {lift} is slow. The clothes shop has a {sale}! The jackets are {expensive}, but the T-shirts are {cheap}. Bella says: “Don’t think about money, Cam. {Enjoy yourself}!”'},
  {type:'order',title:'Questions in the shop',ru:'Собери вопрос из диалога в магазине: нажимай на слова по порядку. Одно слово лишнее.',cam:['max_wink','I’m a seller today! Help me ask my customers the right questions.'],items:[
   ['Can I help you',['help','Do','Can','you','I'],'Do'],
   ['How much is it',['it','much','Does','How','is'],'Does'],
@@ -362,8 +362,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -411,5 +409,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

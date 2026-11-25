@@ -143,7 +143,7 @@ document.querySelectorAll('img[data-r]').forEach(i=>{if(RB[i.dataset.r])i.src=RB
 
 /* ---------- tasks (reworked from Workbook p. 7–9) ---------- */
 const TASKS=[
- {type:'select',title:'Family words',ru:'Вставь слово из рамки: кто это в семье? Каждое слово — один раз.',cam:['max_smile','My friend Lily has a big family. Who is who? Help me!'],
+ {type:'select',title:'Family words',ru:'Вставь слово из рамки: кто это в семье? Каждое слово — один раз.',cam:['max_smile','My friend Bella has a big family. Who is who? Help me!'],
   box:['grandfather','nephew','uncle','niece','cousin','grandmother','aunt','great-grandmother'],items:[
   ['My dad’s father is my ___.','grandfather'],
   ['My sister’s son is my ___.','nephew'],
@@ -170,9 +170,9 @@ const TASKS=[
   ['The ___ room is big. (three girls)',['girls’','girl’s'],'girls’'],
   ['Where is the ___ bag? (one teacher)',['teacher’s','teachers’'],'teacher’s'],
   ['My ___ names are Lulu and Lili. (two cousins)',['cousins’','cousin’s'],'cousins’']]},
- {type:'gaps',title:'Cam’s letter',ru:'Впиши слово из рамки: my, our, their, hers, mine, its, your. Нажми на слово в рамке, чтобы вставить его.',cam:['max_dream','I’m writing a letter to Lily. Please help me with the small words!'],
+ {type:'gaps',title:'Cam’s letter',ru:'Впиши слово из рамки: my, our, their, hers, mine, its, your. Нажми на слово в рамке, чтобы вставить его.',cam:['max_dream','I’m writing a letter to Bella. Please help me with the small words!'],
   box:['my','our','their','hers','mine','its','your'],
-  text:'Dear Lily, {My} name is Cam and I live in Fuzzburg. This is a photo of {my} family. {Our} house is big and yellow. My sisters are twins, and {their} names are Lulu and Lili. Lulu likes music, and the guitar is {hers}. I like filming, and the red camera is {mine}. Our cat is called Pip. {Its} favourite place is my bed! What about {your} family? Write soon! Cam'},
+  text:'Dear Bella, {My} name is Cam and I live in Fuzzburg. This is a photo of {my} family. {Our} house is big and yellow. My sisters are twins, and {their} names are Lulu and Lili. Lulu likes music, and the guitar is {hers}. I like filming, and the red camera is {mine}. Our cat is called Pip. {Its} favourite place is my bed! What about {your} family? Write soon! Cam'},
  {type:'mcq',title:'Quick check',ru:'Выбери правильный ответ.',cam:['max_hmm','Quick check! How much do you remember about my and mine?'],items:[
   ['Possessive adjectives (my, your, her…) come ___ a noun.',['before','after'],'before'],
   ['After mine, yours, hers we ___ a noun.',['don’t put','put'],'don’t put'],
@@ -190,7 +190,7 @@ const TASKS=[
  {type:'select',title:'Words of the lesson',ru:'Слова из памятки к уроку 2. Выбери подходящее слово, каждое — один раз. Можно подсматривать в памятку!',cam:['max_game','Time to check the words from your memo!'],
   box:['tall','aunt','together','niece','nephew','grandparents','great-grandmother','wardrobe','clothes','twins'],items:[
   ['My brother is very ___. He plays basketball.','tall'],
-  ['Lily’s mum has a sister. She is Lily’s ___.','aunt'],
+  ['Bella’s mum has a sister. She is Bella’s ___.','aunt'],
   ['My ___ live in the country: they are my mum’s parents.','grandparents'],
   ['Mum, Dad and I sing ___ in the car.','together'],
   ['My sister has a daughter, Mia. Mia is my ___.','niece'],
@@ -360,8 +360,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -409,5 +407,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

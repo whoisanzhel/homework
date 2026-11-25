@@ -162,19 +162,19 @@ const TASKS=[
   ['⚽ A ball is ___.','round'],
   ['📄 A sheet of paper is thin and ___.','flat']]},
  {type:'mcq',title:'Short answers',ru:'Прочитай описание картинки и выбери краткий ответ.',
-  read:'<p><b>In the picture</b></p><p>Tom is sitting on the sofa in the living room. He is playing a game. Lily is standing next to the window. She is talking on the phone. Leo is in the kitchen. He is cooking dinner.</p>',
+  read:'<p><b>In the picture</b></p><p>Tom is sitting on the sofa in the living room. He is playing a game. Bella is standing next to the window. She is talking on the phone. Leo is in the kitchen. He is cooking dinner.</p>',
   cam:['max_hmm','Look at my picture! What is everybody doing right now?'],items:[
   ['Is Tom playing a game?',['Yes, he is.','No, he isn’t.','Yes, he does.'],'Yes, he is.'],
-  ['Is Lily standing next to the door?',['Yes, she is.','No, she isn’t.','No, she doesn’t.'],'No, she isn’t.'],
-  ['Is Lily talking on the phone?',['Yes, she is.','No, she isn’t.','Yes, she does.'],'Yes, she is.'],
+  ['Is Bella standing next to the door?',['Yes, she is.','No, she isn’t.','No, she doesn’t.'],'No, she isn’t.'],
+  ['Is Bella talking on the phone?',['Yes, she is.','No, she isn’t.','Yes, she does.'],'Yes, she is.'],
   ['Is Leo watching TV?',['Yes, he is.','No, he isn’t.','No, he doesn’t.'],'No, he isn’t.'],
   ['Is Leo cooking dinner?',['Yes, he is.','No, he isn’t.','Yes, he does.'],'Yes, he is.'],
   ['Are Tom and Leo in the same room?',['Yes, they are.','No, they aren’t.','No, they don’t.'],'No, they aren’t.']]},
  {type:'gaps',title:'In the shop',ru:'Впиши слово из рамки. Нажми на слово в рамке, чтобы вставить его в пропуск.',cam:['max_lol','This is a talk in a clothes shop. Some words are missing!'],
   box:['help','size','much','cheap','take','expensive'],
-  text:'Assistant: Can I {help} you? Lily: Yes, please. I’d like this green T-shirt. Assistant: What {size} do you want? Lily: Large, please. How {much} is it? Assistant: Ten pounds. Lily: Wow, that’s {cheap}! I’ll {take} it. But the red jeans are too {expensive}.'},
+  text:'Assistant: Can I {help} you? Bella: Yes, please. I’d like this green T-shirt. Assistant: What {size} do you want? Bella: Large, please. How {much} is it? Assistant: Ten pounds. Bella: Wow, that’s {cheap}! I’ll {take} it. But the red jeans are too {expensive}.'},
  {type:'mcq',title:'Simple or Continuous?',ru:'Every day — Present Simple, right now — Present Continuous. Выбери форму.',cam:['max_nervous','Every day or right now? Careful with the verbs!'],items:[
-  ['Lily ___ to school every day.',['walks','is walking'],'walks'],
+  ['Bella ___ to school every day.',['walks','is walking'],'walks'],
   ['Look! Leo ___ a huge snowman.',['is building','builds'],'is building'],
   ['My dad ___ coffee every morning.',['drinks','is drinking'],'drinks'],
   ['Shh! The baby ___ right now.',['is sleeping','sleeps'],'is sleeping'],
@@ -359,8 +359,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -408,5 +406,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

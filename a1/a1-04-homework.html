@@ -156,7 +156,7 @@ const TASKS=[
   ['Cam ___ videos of the farm every day.',['film','films'],'films'],
   ['I ___ milk every morning.',['drink','drinks'],'drink'],
   ['The goats ___ in the field.',['stay','stays'],'stay'],
-  ['Lily ___ a pony at the weekend.',['ride','rides'],'rides'],
+  ['Bella ___ a pony at the weekend.',['ride','rides'],'rides'],
   ['Leo ___ like loud noises.',['don’t','doesn’t'],'doesn’t'],
   ['The donkey ___ eat meat.',['don’t','doesn’t'],'doesn’t'],
   ['My cousins ___ live on a farm.',['don’t','doesn’t'],'don’t'],
@@ -173,12 +173,12 @@ const TASKS=[
  {type:'mcq',title:'Find the right sentence',ru:'Выбери предложение без ошибки.',cam:['max_hmm','Hmm, some sentences have mistakes. Which one is correct?'],items:[
   ['Choose the correct sentence.',['Pat feeds the goats.','Pat feed the goats.'],'Pat feeds the goats.'],
   ['Choose the correct sentence.',['The cows don’t eat meat.','The cows doesn’t eat meat.'],'The cows don’t eat meat.'],
-  ['Choose the correct question.',['Does Lily like ponies?','Does Lily likes ponies?'],'Does Lily like ponies?'],
+  ['Choose the correct question.',['Does Bella like ponies?','Does Bella likes ponies?'],'Does Bella like ponies?'],
   ['Choose the correct sentence.',['My dad doesn’t work on Sundays.','My dad doesn’t works on Sundays.'],'My dad doesn’t work on Sundays.'],
   ['Choose the correct question.',['Do you stay on the farm?','Does you stay on the farm?'],'Do you stay on the farm?'],
   ['Choose the correct sentence.',['The donkey has a brown tail.','The donkey have a brown tail.'],'The donkey has a brown tail.']]},
  {type:'mcq',title:'From your memo',ru:'Задание по памятке: правило и ловушка. Можно подсматривать в памятку!',cam:['max_think','Open your memo! Look at the rule and the trap, then choose.'],items:[
-  ['Lily doesn’t ___ the donkey.',['like','likes'],'like'],
+  ['Bella doesn’t ___ the donkey.',['like','likes'],'like'],
   ['Does Pat ___ at five?',['wake up','wakes up'],'wake up'],
   ['Choose the correct sentence.',['He doesn’t like it.','He don’t like it.','He doesn’t likes it.'],'He doesn’t like it.'],
   ['Choose the correct question.',['Does she work on Sundays?','Does she works on Sundays?','Do she work on Sundays?'],'Does she work on Sundays?'],
@@ -357,8 +357,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -406,5 +404,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

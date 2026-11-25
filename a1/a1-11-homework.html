@@ -153,7 +153,7 @@ const TASKS=[
   ['A: Can I have ___ gloves on the shelf over there? B: Sure!',['those','these','that','this'],'those']]},
  {type:'mcq',title:'Mia in the shop',ru:'Прочитай текст и выбери слово для каждого пропуска (1)–(8).',
   read:'<p><b>A new jacket</b></p><p>Mia and her mum are in a clothes shop. Mia holds up a green jacket. She looks at (1) in the mirror. “Mum, do you like (2) jacket?” Mum says, “It’s nice, but it’s too small. Try (3) big jacket over there! I’m taking a photo of (4).” Then Mia sees two friends. She knows (5) from school. “Hello!” she says. “Can you help (6) with the jacket?” The friends say, “Of course! We like (7) shop here. Look at (8) boots over there!”</p>',
-  cam:['max_hmm','Mia and her mum are shopping too. Read their story and choose A, B or C.'],items:[
+  fixed:1,cam:['max_hmm','Mia and her mum are shopping too. Read their story and choose A, B or C.'],items:[
   ['Gap (1): She looks at ___ in the mirror.',['her','herself','she'],'herself'],
   ['Gap (2): ‘do you like ___ jacket?’',['this','that','these'],'this'],
   ['Gap (3): ‘Try ___ big jacket over there!’',['that','this','those'],'that'],
@@ -189,7 +189,7 @@ const TASKS=[
   ['Our dog likes to ___ cats in the garden.','chase'],
   ['The little girl sits on her dad’s ___.','shoulders'],
   ['___ snow is coming. The sky is grey.','It looks like'],
-  ['Lily is sitting ___ me. Our chairs are together.','next to'],
+  ['Bella is sitting ___ me. Our chairs are together.','next to'],
   ['Don’t stand ___ the TV! I can’t see it.','in front of']]},
  {type:'write',title:'Describe the picture',ru:'Представь зимнюю картинку (торговый центр, улица, каток) и опиши её: 5–6 предложений. Используй is / are + -ing, me / him / her / us / them, I think / It looks like, next to / in front of.',cam:['max_dream','Last one! Imagine a picture of a snowy day and describe it for me.'],
   placeholder:'It’s a snowy day at the mall. A boy is …'}
@@ -351,8 +351,6 @@ function tick(){cc.clearRect(0,0,cf.width,cf.height);
 window.__hw={R,TASKS,show};
 })();
 
-</script>
-<script>
 /* ---------- answer order: gap dropdowns, word boxes and A / B choices are shuffled, never in the order of the answers ---------- */
 (function(){
   if(window.__optMix)return;window.__optMix=true;
@@ -400,5 +398,6 @@ window.__hw={R,TASKS,show};
   scan();
   try{new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
 </script>
 </body></html>

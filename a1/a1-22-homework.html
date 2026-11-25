@@ -113,7 +113,7 @@ body.end .top{display:none}
 <section class="step on" id="s0">
   <div class="card">
     <div class="eyebrow">Homework · Lesson 22</div>
-    <h2>A note for Lily</h2>
+    <h2>A note for Bella</h2>
     <div class="cam"><img data-r="max_smile" alt="Cam"><div class="bub"><b class="nm">Cam</b>Hi! I’m Cam, the cameraman. Today’s mission has 8 short tasks about a, an, the and instructions for pets. At the end you get a report card for your teacher!</div></div>
     <p class="ru">8 заданий, примерно 25 минут. Каждый ответ проверяется сразу, исправить его нельзя, так что не спеши. Трудное задание можно пропустить и вернуться к нему позже: номера заданий вверху экрана. В конце сделай скриншот отчёта и отправь учителю. Не закрывай страницу, пока не отправишь скриншот: после перезагрузки всё начнётся заново.</p>
     <label class="f">Your name <input id="name" autocomplete="given-name" placeholder="Your name"></label>
@@ -137,7 +137,7 @@ body.end .top{display:none}
 <script>
 (function(){
 const $=s=>document.querySelector(s);
-const HW={level:'A1',lesson:'Lesson 22',title:'A note for Lily',wlabel:'A note for my friend'};
+const HW={level:'A1',lesson:'Lesson 22',title:'A note for Bella',wlabel:'A note for my friend'};
 const norm=s=>String(s||'').toLowerCase().replace(/[’`´]/g,"'").replace(/\s+/g,' ').replace(/^\s|\s$/g,'').replace(/[.?!]+$/,'');
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -147,12 +147,12 @@ document.querySelectorAll('img[data-r]').forEach(i=>{if(RB[i.dataset.r])i.src=RB
 const TASKS=[
  {type:'order',title:'Make sentences',ru:'Собери предложение из слов: нажимай на слова по порядку. Точка или вопросительный знак добавится сам.',cam:['max_think','Oops! The words on my zoo signs are all mixed up. Put them in the right order!'],items:[
   ['A gecko is an interesting pet.',['gecko','is','A','interesting','an','pet']],
-  ['Mr Hale has an enormous python.',['python','Mr Hale','has','an','enormous']],
+  ['Mr Moss has an enormous python.',['python','Mr Moss','has','an','enormous']],
   ['There is an owl in the garden.',['in','the','There','garden','is','an','owl']],
   ['Is there a snake at the zoo?',['the','Is','a','snake','there','at','zoo']],
   ['Is an elephant an African animal?',['an','Is','African','elephant','animal','an']]]},
- {type:'mcq',title:'Lily and Leo at the weekend',ru:'Прочитай разговор и выбери the или – (прочерк = артикль не нужен) для каждого пропуска (1)–(8).',cam:['max_smile','Lily and Leo are talking about the zoo. Some small words fell out. Which ones fit?'],fixed:0,
-  read:'<p><b>Lily:</b> What are you doing at (1) ___ weekend, Leo?</p><p><b>Leo:</b> I’m going to (2) ___ zoo on (3) ___ Saturday. (4) ___ Elephants are my favourite animals!</p><p><b>Lily:</b> Wow! I like (5) ___ animals too. Can I come?</p><p><b>Leo:</b> Sure! We can walk in (6) ___ park first. Let’s meet at (7) ___ ten o’clock at (8) ___ bus stop.</p>',items:[
+ {type:'mcq',title:'Bella and Leo at the weekend',ru:'Прочитай разговор и выбери the или – (прочерк = артикль не нужен) для каждого пропуска (1)–(8).',cam:['max_smile','Bella and Leo are talking about the zoo. Some small words fell out. Which ones fit?'],fixed:0,
+  read:'<p><b>Bella:</b> What are you doing at (1) ___ weekend, Leo?</p><p><b>Leo:</b> I’m going to (2) ___ zoo on (3) ___ Saturday. (4) ___ Elephants are my favourite animals!</p><p><b>Bella:</b> Wow! I like (5) ___ animals too. Can I come?</p><p><b>Leo:</b> Sure! We can walk in (6) ___ park first. Let’s meet at (7) ___ ten o’clock at (8) ___ bus stop.</p>',items:[
   ['(1) What are you doing at ___ weekend?',['the','–'],'the'],
   ['(2) I’m going to ___ zoo.',['the','–'],'the'],
   ['(3) I’m going to the zoo on ___ Saturday.',['the','–'],'–'],
@@ -208,7 +208,7 @@ const TASKS=[
   ['A ___ is a colourful bird that can talk.','parrot'],
   ['A ___ is a small lizard that walks on walls.','gecko']]},
  {type:'write',title:'A note for my friend',ru:'Напиши записку другу об уходе за питомцем (5–6 строк): Hi…! — инструкции — Bye for now! Нужны три инструкции (хотя бы одна с Never или Don’t), once или twice a day и артикли a / an / the.',cam:['max_dream','Last task! Your friend looks after your pet this weekend. Write a note for the fridge. True or made-up, both are OK!'],
-  placeholder:'Hi Lily! Thanks for looking after my hamster. Feed him twice a day. Never…'}
+  placeholder:'Hi Bella! Thanks for looking after my hamster. Feed him twice a day. Never…'}
 ];
 
 /* checklist for the writing task */

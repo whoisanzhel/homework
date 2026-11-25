@@ -145,27 +145,27 @@ document.querySelectorAll('img[data-r]').forEach(i=>{if(RB[i.dataset.r])i.src=RB
 
 /* ---------- tasks (reworked from Workbook p. 30–31) ---------- */
 const TASKS=[
- {type:'mcq',title:'Lily’s trip diary',ru:'Прочитай дневник Лили. Выбери, чем закончить каждое предложение. Фразы про прошлое (went, got, had, was) пока просто читай как готовые.',
-  read:'<p><b>Lily’s trip diary</b></p><p>Saturday. Today my family went to the sea by bus. It was a long trip, but it was fun! We got ice cream on the beach. My brother had fish and chips. There were a lot of tourists and a lot of traffic. In the evening we went on a tour of the bay by ferry. The view was beautiful!</p>',
-  cam:['max_smile','Lily sent me her trip diary! Read it and help me with the answers.'],items:[
-  ['To get to the sea, Lily’s family went ___.',['by bus','by plane','by ferry'],'by bus'],
+ {type:'mcq',title:'Bella’s trip diary',ru:'Прочитай дневник Bella. Выбери, чем закончить каждое предложение. Фразы про прошлое (went, got, had, was) пока просто читай как готовые.',
+  read:'<p><b>Bella’s trip diary</b></p><p>Saturday. Today my family went to the sea by bus. It was a long trip, but it was fun! We got ice cream on the beach. My brother had fish and chips. There were a lot of tourists and a lot of traffic. In the evening we went on a tour of the bay by ferry. The view was beautiful!</p>',
+  cam:['max_smile','Bella sent me her trip diary! Read it and help me with the answers.'],items:[
+  ['To get to the sea, Bella’s family went ___.',['by bus','by plane','by ferry'],'by bus'],
   ['On the beach, the family got ___.',['ice cream','fish and chips','a postcard'],'ice cream'],
-  ['___ had fish and chips.',['Lily’s brother','Lily','Lily’s mum'],'Lily’s brother'],
+  ['___ had fish and chips.',['Bella’s brother','Bella','Bella’s mum'],'Bella’s brother'],
   ['At the end of the day, the ___ was beautiful.',['view','traffic','ticket'],'view']]},
- {type:'mcq',title:'True or False?',fixed:1,ru:'Прочитай дневник Лили ещё раз. Выбери True (так и есть) или False (в тексте по-другому).',
-  read:'<p><b>Lily’s trip diary</b></p><p>Saturday. Today my family went to the sea by bus. It was a long trip, but it was fun! We got ice cream on the beach. My brother had fish and chips. There were a lot of tourists and a lot of traffic. In the evening we went on a tour of the bay by ferry. The view was beautiful!</p>',
+ {type:'mcq',title:'True or False?',fixed:1,ru:'Прочитай дневник Bella ещё раз. Выбери True (так и есть) или False (в тексте по-другому).',
+  read:'<p><b>Bella’s trip diary</b></p><p>Saturday. Today my family went to the sea by bus. It was a long trip, but it was fun! We got ice cream on the beach. My brother had fish and chips. There were a lot of tourists and a lot of traffic. In the evening we went on a tour of the bay by ferry. The view was beautiful!</p>',
   cam:['max_think','Now decide: is my sentence True or False?'],items:[
   ['The family went to the sea by ferry.',['True','False'],'False'],
   ['The trip was long.',['True','False'],'True'],
   ['They got ice cream on the beach.',['True','False'],'True'],
-  ['Lily had fish and chips.',['True','False'],'False'],
+  ['Bella had fish and chips.',['True','False'],'False'],
   ['There were a lot of tourists.',['True','False'],'True'],
   ['There was no traffic.',['True','False'],'False'],
   ['In the evening they went on a tour of the bay.',['True','False'],'True'],
   ['They went on the tour by bus.',['True','False'],'False']]},
- {type:'gaps',title:'Cam’s postcard',ru:'Впиши слово из рамки в пропуск. Каждое слово — один раз. Нажми на слово в рамке, чтобы вставить его.',cam:['max_wink','I’m writing a postcard to Lily from Glimmer Bay. Help me with the words!'],
+ {type:'gaps',title:'Cam’s postcard',ru:'Впиши слово из рамки в пропуск. Каждое слово — один раз. Нажми на слово в рамке, чтобы вставить его.',cam:['max_wink','I’m writing a postcard to Bella from Glimmer Bay. Help me with the words!'],
   box:['capital','guide','sights','tickets','tour','tourists','traffic','trip','view'],
-  text:'Dear Lily,\nI’m on a {trip} to Glimmer Bay! It’s the {capital} of Coral Land, so there are a lot of {tourists}.\nThere is a lot of {traffic}, too: ferries, taxis and carriages.\nWe buy {tickets} for the harbour {tour}. Our {guide} tells us about the {sights}.\nMy hotel room has an amazing {view}!\nLove, Cam'},
+  text:'Dear Bella,\nI’m on a {trip} to Glimmer Bay! It’s the {capital} of Coral Land, so there are a lot of {tourists}.\nThere is a lot of {traffic}, too: ferries, taxis and carriages.\nWe buy {tickets} for the harbour {tour}. Our {guide} tells us about the {sights}.\nMy hotel room has an amazing {view}!\nLove, Cam'},
  {type:'mcq',title:'Swap the word',ru:'В каждом предложении выделенное слово не подходит по смыслу. Выбери слово, которое нужно поставить вместо него.',cam:['max_hmm','Oh no! I put a wrong word in every sentence. Which word is right?'],items:[
   ['We buy a “view” for the ferry. Change “view” to…',['ticket','traffic','trip'],'ticket'],
   ['There are a lot of “sights” on the road. It’s noisy. Change “sights” to…',['traffic','tourists','views'],'traffic'],
